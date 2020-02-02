@@ -1,0 +1,24 @@
+.app_nav {
+    grid-area: nav;
+    background-color: #6e6e6e;
+    padding: 40px 0 40px 25px;
+    font-size: 13pt;
+}
+
+.item {
+    padding-bottom: 10px;
+}
+
+.item a{
+    text-decoration: none;
+    color: white;
+}
+
+.item a.activeLink {
+    color: gold;
+}
+
+.friends {
+    font-size: 17pt;
+    padding-top: 30px;
+}

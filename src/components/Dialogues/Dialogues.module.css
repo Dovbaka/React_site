@@ -1,0 +1,77 @@
+.dialogues {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogues_items .dialogue {
+    padding: 20px 100px;
+    color: #2e2e2e;
+    text-decoration: none;
+}
+
+.dialogue  a{
+    color: #2e2e2e;
+    text-decoration: none;
+}
+
+.dialogues_items .active {
+    color: gold;
+}
+
+.messages {
+
+}
+
+.messages_items .message {
+    padding: 20px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.message img {
+    margin-right: 10px;
+    border-radius: 25px;
+    height: 40px;
+    width: 40px;
+}
+
+.messages_items .input {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+
+.input {
+    padding-top: 15%;
+}
+
+.input button{
+    margin-left: 30px;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    background-color:#ffffff;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+
+.input button:hover {
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    background-color:#f6f6f6;
+}
+
+.input textarea{
+    margin-left: 70px;
+    height: 50px;
+    width: 300px;
+    border-radius: 5px;
+}

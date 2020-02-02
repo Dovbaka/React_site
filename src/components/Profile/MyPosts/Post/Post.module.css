@@ -1,0 +1,31 @@
+.item {
+    color:#2e2e2e;
+    overflow:auto;
+    margin-right: 15px;
+}
+
+.item img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    float: left;
+}
+
+.likes {
+    float: right;
+    color: #c0b6bd;
+}
+
+.likes img {
+    height: 12px;
+    width: 12px;
+    border-radius: 0;
+    float: none;
+}
+
+.text {
+    padding-left: 15px;
+    text-align: justify;
+    overflow:hidden;
+    color: #2e2e2e;
+}

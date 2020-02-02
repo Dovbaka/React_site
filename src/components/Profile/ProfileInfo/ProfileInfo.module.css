@@ -1,0 +1,23 @@
+.descriptionBlock {
+    padding: 10px;
+}
+
+.descriptionBlock img{
+    float: left;
+}
+
+.descriptionBlock h2{
+    margin: 0;
+    padding-left: 270px;
+    font-size: 20pt;
+    font-weight: normal;
+}
+
+.descriptionBlock p{
+    margin: 0;
+    padding-left: 270px;
+    font-size: 13pt;
+    font-weight: normal;
+    max-width: 320px;
+    text-align: justify;
+}

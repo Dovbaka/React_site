@@ -1,0 +1,21 @@
+.friends_online {
+    color: white;
+    font-size: 12px;
+}
+
+.friends_online span {
+    padding-right: 15px;
+    padding-top: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.caption {
+    display: block;
+}
+
+.friends_online img {
+    border-radius: 25px;
+    height: 40px;
+    width: 40px;
+}

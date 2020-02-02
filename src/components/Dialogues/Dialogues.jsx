@@ -1,0 +1,34 @@
+import React from 'react'
+import style from './Dialogues.module.css'
+import DialogueItem from "./DialogueItem/DialogueItem";
+import Message from "./Messages/Message";
+
+function Dialogues(props) {
+
+    let Dialogues = props.state.baseMessages.map(el => (<DialogueItem name={el.name} path={el.pathId}/>));
+    let Messages = props.state.baseTexts.map(el => (<Message message={el.text}/>));
+
+    let writeMessage = React.createRef();
+
+    function writeMess() {
+        let text = writeMessage.current.value;
+    }
+
+    return (
+        <div className={style.dialogues}>
+            <div className={style.dialogues_items}>
+                {Dialogues}
+            </div>
+            <div className={style.messages_items}>
+                {Messages}
+                <div className={style.input}>
+                    <textarea ref={writeMessage}/>
+                    <button onClick={writeMess}>Submit</button>
+                </div>
+
+            </div>
+        </div>
+    )
+}
+
+export default Dialogues
