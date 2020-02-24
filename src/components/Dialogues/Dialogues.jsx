@@ -5,13 +5,18 @@ import Message from "./Messages/Message";
 
 function Dialogues(props) {
 
-    let Dialogues = props.state.baseMessages.map(el => (<DialogueItem name={el.name} path={el.pathId}/>));
-    let Messages = props.state.baseTexts.map(el => (<Message message={el.text}/>));
+    let Dialogues = props.baseMessages.map(el => (<DialogueItem name={el.name} path={el.pathId}/>));
+    let Messages = props.baseTexts.map(el => (<Message message={el.text}/>));
 
     let writeMessage = React.createRef();
 
-    function writeMess() {
+    function sendMess() {
+        props.sendMessage();
+    }
+
+    function onMessageChange() {
         let text = writeMessage.current.value;
+        props.updateMessageText(text);
     }
 
     return (
@@ -22,8 +27,8 @@ function Dialogues(props) {
             <div className={style.messages_items}>
                 {Messages}
                 <div className={style.input}>
-                    <textarea ref={writeMessage}/>
-                    <button onClick={writeMess}>Submit</button>
+                    <textarea ref={writeMessage} onChange={onMessageChange} value={props.newMessageText}/>
+                    <button onClick={sendMess}>Submit</button>
                 </div>
 
             </div>

@@ -1,3 +1,7 @@
+import profileReducer from "./profileReducer";
+import dialoguesReducer from "./dialoguesReducer";
+import friendsBarReducer from "./friendsBarReducer";
+
 const loream = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta nisi mi," +
     " nec cursus lacus accumsan eu. Sed ut dictum justo. Donec non enim mi. Sed fringilla sed ante" +
     " varius semper. Praesent semper nunc id leo tempus, in iaculis nibh dapibus." +
@@ -35,6 +39,7 @@ let store = {
                 {id: 1, text: "Hey, boy!"},
                 {id: 2, text: "Haw you seen Lenny?"}
             ],
+            newMessageText:'',
         },
         friendsBar:{
             friend:[
@@ -55,25 +60,11 @@ let store = {
     setState(){
     },
     dispatch(action){
-        switch (action.type) {
-            case 'ADD-POST-CONTENT':
-                let newContent = {
-                    id: this._state.profilePage.basePosts.length + 1,
-                    text: this._state.profilePage.newPostText,
-                    likes: 0
-                };
-                this._state.profilePage.newPostText = '';
-
-                this._state.profilePage.basePosts.push(newContent);
-                this.callSubscriber();
-                break;
-
-            case 'UPDATE-NEW-POST-TEXT':
-                this._state.profilePage.newPostText = action.newText;
-                this.callSubscriber(this._state);
-                break;
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = dialoguesReducer(this._state.messagePage, action);
+        this._state.friendsBa = friendsBarReducer(this._state.friendsBar, action);
+        this.callSubscriber(this._state);
     }
 };
 
-export default store;
+//export default store;

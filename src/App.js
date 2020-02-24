@@ -3,18 +3,18 @@ import './App.css';
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import Profile from './components/Profile/Profile';
-import Dialogues from "./components/Dialogues/Dialogues";
 import {Route} from "react-router-dom"
+import DialoguesContainer from "./components/Dialogues/Messages/DialoguesContainer";
 
 function App(props) {
+    debugger;
     return (
         <div className="app_wrapper">
             <Header/>
-            <NavBar state={props.state.friendsBar}/>
+            <NavBar />
             <div className="app_wrapper_content">
-                <Route path='/dialogues' render={() => <Dialogues state={props.state.messagePage}/>}/>
-                <Route path='/profile' render={() => <Profile state={props.state.profilePage}
-                                                              dispatch={props.dispatch}/>}/>
+                <Route path='/dialogues' render={() => <DialoguesContainer/>}/>
+                <Route path='/profile' render={() => <Profile />}/>
             </div>
         </div>
     );

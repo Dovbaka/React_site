@@ -24,10 +24,11 @@ function NavBar(props) {
             </div>
             <div className={style.item + ' '  + style.friends}>
                 <a>Friends</a>
-                <Friends state={props.state.friend}/>
+
             </div>
         </nav>
     );
+   // <Friends state={props.state.friend}/>
 }
 
 export default NavBar
