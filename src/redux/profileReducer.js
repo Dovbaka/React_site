@@ -24,23 +24,29 @@ let initializationState = {
 
 function profileReducer(state = initializationState, action) {
     switch (action.type) {
-        case 'ADD-POST-CONTENT':
+        case 'ADD-POST-CONTENT':{
             let newContent = {
                 id: state.basePosts.length + 1,
                 text: state.newPostText,
                 likes: 0
             };
-            state.newPostText = '';
-            state.basePosts.push(newContent);
-            break;
+            let stateCopy = {...state};
+            stateCopy.basePosts = [...state.basePosts];
+            stateCopy.basePosts.push(newContent);
+            stateCopy.newPostText = '';
+            return stateCopy;
+        }
 
-        case 'UPDATE-NEW-POST-TEXT':
-            state.newPostText = action.newText;
-            break;
+
+        case 'UPDATE-NEW-POST-TEXT':{
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
+
         default:
             return state;
     }
-    return state;
 }
 
 export function addPostActionCreator(){

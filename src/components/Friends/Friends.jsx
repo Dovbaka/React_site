@@ -4,7 +4,7 @@ import style from './Friends.module.css'
 
 function Friends(props) {
 
-    let Friends = props.state.map(el => (
+    let Friends = props.base.map(el => (
         <span>
                 <img src={el.avatar} alt ="avatar"/>
                 <div className={style.caption}>{el.name}</div>

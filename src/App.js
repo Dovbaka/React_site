@@ -7,7 +7,6 @@ import {Route} from "react-router-dom"
 import DialoguesContainer from "./components/Dialogues/Messages/DialoguesContainer";
 
 function App(props) {
-    debugger;
     return (
         <div className="app_wrapper">
             <Header/>

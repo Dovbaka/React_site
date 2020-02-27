@@ -25,7 +25,9 @@ function Dialogues(props) {
                 {Dialogues}
             </div>
             <div className={style.messages_items}>
-                {Messages}
+                <div className={style.message_box}>
+                    {Messages}
+                </div>
                 <div className={style.input}>
                     <textarea ref={writeMessage} onChange={onMessageChange} value={props.newMessageText}/>
                     <button onClick={sendMess}>Submit</button>

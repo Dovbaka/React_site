@@ -1,10 +1,10 @@
 import React from 'react';
 import style from './NavBar.module.css';
 import {NavLink} from "react-router-dom";
-import Friends from "../Friends/Friends";
+import FriendsContainer from "../Friends/FriendsContainer ";
 
 
-function NavBar(props) {
+function NavBar() {
     return (
         <nav className={style.app_nav}>
             <div className={style.item}>
@@ -24,11 +24,10 @@ function NavBar(props) {
             </div>
             <div className={style.item + ' '  + style.friends}>
                 <a>Friends</a>
-
+                <FriendsContainer />
             </div>
         </nav>
     );
-   // <Friends state={props.state.friend}/>
 }
 
 export default NavBar

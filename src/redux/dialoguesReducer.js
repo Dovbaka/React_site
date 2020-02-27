@@ -15,23 +15,28 @@ let initializationState = {
 
 function dialoguesReducer(state = initializationState, action) {
     switch (action.type) {
-        case 'SEND-MESSAGE':
+        case 'SEND-MESSAGE':{
             let message = {
                 id: state.baseTexts.length + 1,
                 text: state.newMessageText
             };
-            state.newMessageText = '';
-            state.baseTexts.push(message);
-            break;
+            let stateCopy = {...state};
+            stateCopy.baseTexts = [...state.baseTexts];
+            stateCopy.newMessageText = '';
+            stateCopy.baseTexts.push(message);
+            return stateCopy;
+        }
 
-        case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newText;
-            break;
+
+        case 'UPDATE-NEW-MESSAGE-TEXT':{
+            let stateCopy = {...state};
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
+        }
 
         default:
             return state;
     }
-    return state;
 }
 
 export function sendMessageActionCreator(){

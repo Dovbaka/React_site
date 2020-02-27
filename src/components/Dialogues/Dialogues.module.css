@@ -18,8 +18,10 @@
     color: gold;
 }
 
-.messages {
-
+.message_box {
+    overflow: auto;
+    height: 200px;
+    width: 500px;
 }
 
 .messages_items .message {
@@ -44,7 +46,8 @@
 
 
 .input {
-    padding-top: 15%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .input button{
