@@ -30,18 +30,19 @@ function profileReducer(state = initializationState, action) {
                 text: state.newPostText,
                 likes: 0
             };
-            let stateCopy = {...state};
-            stateCopy.basePosts = [...state.basePosts];
-            stateCopy.basePosts.push(newContent);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return { // Creates a copy of the state and pushes new elements
+                ...state,
+                basePosts: [...state.basePosts, newContent],
+                newPostText: ''
+            };
         }
 
 
         case 'UPDATE-NEW-POST-TEXT':{
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         }
 
         default:

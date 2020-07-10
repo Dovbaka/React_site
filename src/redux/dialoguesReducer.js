@@ -20,16 +20,17 @@ function dialoguesReducer(state = initializationState, action) {
                 id: state.baseTexts.length + 1,
                 text: state.newMessageText
             };
-            let stateCopy = {...state};
-            stateCopy.baseTexts = [...state.baseTexts];
-            stateCopy.newMessageText = '';
-            stateCopy.baseTexts.push(message);
-            return stateCopy;
+
+            return { // Creates a copy of the state and pushes new elements
+                ...state,
+                baseTexts: [...state.baseTexts, message],
+                newMessageText: ''
+            }
         }
 
 
         case 'UPDATE-NEW-MESSAGE-TEXT':{
-            let stateCopy = {...state};
+            let stateCopy = {...state}; //The old version of wat to make a copy
             stateCopy.newMessageText = action.newText;
             return stateCopy;
         }
