@@ -8,7 +8,7 @@ let initializationState = {
     ],
     baseTexts: [
         {id: 1, text: "Hey, boy!"},
-        {id: 2, text: "Haw you seen Lenny?"}
+        {id: 2, text: "Have you seen Lenny?"}
     ],
     newMessageText:'',
 };
@@ -26,7 +26,6 @@ function dialoguesReducer(state = initializationState, action) {
             stateCopy.baseTexts.push(message);
             return stateCopy;
         }
-
 
         case 'UPDATE-NEW-MESSAGE-TEXT':{
             let stateCopy = {...state};

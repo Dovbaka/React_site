@@ -13,8 +13,8 @@ class SearchUser extends React.Component{
             ])//(res.data.items)
         });
     }
-
     render() {
+        debugger;
         return <div className={style.container}>
             {
                 this.props.users.map( el => <div key={el.id} className={style.item}>
@@ -33,7 +33,7 @@ class SearchUser extends React.Component{
                     <div>{el.location.country}</div>
                 </span>
                         <div className={style.sub}>
-                            {el.subscribed ? <button onClick={() => {this.props.unsubscribeUser(el.id)}}> Subscribe </button>
+                            {el.subscribed ? <button onClick={() => { this.props.unsubscribeUser(el.id)}}> Subscribe </button>
                                 : <button onClick={() => {this.props.subscribeUser(el.id)}}> Unsubscribe </button> }
                         </div>
                     </div>
