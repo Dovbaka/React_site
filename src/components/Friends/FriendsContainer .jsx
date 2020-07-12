@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import Friends from "./Friends";
 
 let mapStateToProps = (state) => {
-    debugger
     return {
        base: state.friendsBar.friend,
     }
