@@ -1,17 +1,24 @@
-let initializationState = {
-    users: [
+const SUBSCRIBE = 'SUBSCRIBE';
+const UNSUBSCRIBE = 'UNSUBSCRIBE';
+const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 
-    ]
+let initializationState = {
+    users: [],
+    pageSize:100,
+    totalUsersCount: 0,
+    currentPage: 1
 };
 
 function searchUserReducer(state = initializationState, action) {
     switch (action.type) {
-        case 'SUBSCRIBE':{
+        case SUBSCRIBE:{
             return {
                 ...state,
                 users: state.users.map( u => {
                     if (u.id === action.userId) {
-                        return { ...u, subscribed: true}
+                        return { ...u, followed: true}
                     }
                     return u;
                 })
@@ -19,20 +26,28 @@ function searchUserReducer(state = initializationState, action) {
         }
 
 
-        case 'UNSUBSCRIBE':{
+        case UNSUBSCRIBE:{
             return {
                 ...state,
                 users: state.users.map( u => {
                     if (u.id === action.userId){
-                        return { ...u, subscribed: false}
+                        return { ...u, followed: false}
                     }
                     return u;
                 })
             }
         }
 
-        case 'SET-USERS':{
-            return { ...state, users: [ ...state.users, ...action.users]}
+        case SET_USERS:{
+            return { ...state, users: action.users}
+        }
+
+        case SET_CURRENT_PAGE:{
+            return { ...state, currentPage: action.page}
+        }
+
+        case SET_TOTAL_COUNT:{
+            return { ...state, totalUsersCount: action.count}
         }
 
         default:
@@ -42,22 +57,36 @@ function searchUserReducer(state = initializationState, action) {
 
 export function subscribeActionCreator(userId){
     return {
-        type: 'SUBSCRIBE',
+        type: SUBSCRIBE,
         userId
     }
 }
 
 export function unsubscribeActionCreator(userId){
     return {
-        type: 'UNSUBSCRIBE',
+        type: UNSUBSCRIBE,
         userId
     }
 }
 
 export function setUsersActionCreator(users){
     return {
-        type: 'SET-USERS',
+        type: SET_USERS,
         users
+    }
+}
+
+export function setCurrentPageActionCreator(page){
+    return {
+        type: SET_CURRENT_PAGE,
+        page
+    }
+}
+
+export function setTotalCountActionCreator(count){
+    return {
+        type: SET_TOTAL_COUNT,
+        count
     }
 }
 

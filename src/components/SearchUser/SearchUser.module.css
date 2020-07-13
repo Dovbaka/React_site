@@ -51,3 +51,14 @@
     text-shadow:0px 1px 0px #ffffff;
     outline:none;
 }
+
+.pageNumbers{
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.selectedPage{
+    font-size: 14pt;
+    color: #f3cb00;
+    font-weight: bold;
+}
