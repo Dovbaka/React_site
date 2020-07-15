@@ -3,12 +3,14 @@ const UNSUBSCRIBE = 'UNSUBSCRIBE';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initializationState = {
     users: [],
     pageSize:100,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 };
 
 function searchUserReducer(state = initializationState, action) {
@@ -50,6 +52,10 @@ function searchUserReducer(state = initializationState, action) {
             return { ...state, totalUsersCount: action.count}
         }
 
+        case TOGGLE_IS_FETCHING:{
+            return { ...state, isFetching: action.isFetching}
+        }
+
         default:
             return state;
     }
@@ -87,6 +93,13 @@ export function setTotalCountActionCreator(count){
     return {
         type: SET_TOTAL_COUNT,
         count
+    }
+}
+
+export function toggleIsFetchingActionCreator(isFetching){
+    return {
+        type: TOGGLE_IS_FETCHING,
+        isFetching
     }
 }
 
