@@ -1,3 +1,9 @@
+const ADD_POST_CONTENT = 'ADD-POST-CONTENT';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
+
+
+
 const loream = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta nisi mi," +
     " nec cursus lacus accumsan eu. Sed ut dictum justo. Donec non enim mi. Sed fringilla sed ante" +
     " varius semper. Praesent semper nunc id leo tempus, in iaculis nibh dapibus." +
@@ -14,17 +20,12 @@ let initializationState = {
         {id: 3, text: loream, likes: 34}
     ],
     newPostText:'',
-    profile:{
-        name:"Name",
-        surname:"Surname",
-        avatar:"https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x",
-        description: loream_shot
-    }
+    profile: null,
 };
 
 function profileReducer(state = initializationState, action) {
     switch (action.type) {
-        case 'ADD-POST-CONTENT':{
+        case ADD_POST_CONTENT:{
             let newContent = {
                 id: state.basePosts.length + 1,
                 text: state.newPostText,
@@ -38,10 +39,18 @@ function profileReducer(state = initializationState, action) {
         }
 
 
-        case 'UPDATE-NEW-POST-TEXT':{
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+        case UPDATE_NEW_POST_TEXT:{
+            return {
+                ...state,
+                newPostText: action.newText
+            }
+        }
+
+        case SET_USER_PROFILE:{
+            return {
+                ...state,
+                profile: action.profile
+            }
         }
 
         default:
@@ -51,14 +60,21 @@ function profileReducer(state = initializationState, action) {
 
 export function addPostActionCreator(){
     return {
-        type: 'ADD-POST-CONTENT'
+        type: ADD_POST_CONTENT
     }
 }
 
 export function updatePostActionCreator(text){
     return {
-        type: 'UPDATE-NEW-POST-TEXT',
+        type: UPDATE_NEW_POST_TEXT,
         newText: text
+    }
+}
+
+export function setUserProfileActionCreator(profile){
+    return {
+        type: SET_USER_PROFILE,
+        profile
     }
 }
 

@@ -4,10 +4,7 @@ import ProfileInfo from "./ProfileInfo";
 
 let mapStateToProps = (state) => {
     return {
-        avatar: state.profilePage.profile.avatar,
-        name: state.profilePage.profile.name,
-        surname: state.profilePage.profile.surname,
-        description: state.profilePage.profile.description
+        profile: state.profilePage.profile,
     }
 };
 

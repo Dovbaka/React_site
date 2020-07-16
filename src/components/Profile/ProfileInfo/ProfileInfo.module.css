@@ -4,6 +4,9 @@
 
 .descriptionBlock img{
     float: left;
+    padding: 10px 10px;
+    width: 230px;
+    height: 230px;
 }
 
 .descriptionBlock h2{

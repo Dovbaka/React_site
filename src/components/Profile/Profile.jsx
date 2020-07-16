@@ -6,7 +6,7 @@ import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 function Profile() {
     return (
         <div>
-            <ProfileInfoContainer />
+            <ProfileInfoContainer/>
             <MyPostsContainer />
         </div>
     );

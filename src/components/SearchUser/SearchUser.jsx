@@ -1,5 +1,6 @@
 import React from "react";
 import style from './SearchUser.module.css'
+import {NavLink} from "react-router-dom";
 
 function SearchUser (props){
 
@@ -24,8 +25,10 @@ function SearchUser (props){
             props.users.map( el => <div key={el.id} className={style.item}>
                 <div className={style.usersAvatar}>
                     <div>
-                        <img  src={el.photos.small == null ? "https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" : el.photos.small}/>
-                    </div>
+                        <NavLink to={'/profile/' + el.id}>
+                            <img  src={el.photos.small == null ? "https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" : el.photos.small}/>
+                        </NavLink>
+                        </div>
                 </div>
                 <div className={style.users}>
                 <span className={style.info}>

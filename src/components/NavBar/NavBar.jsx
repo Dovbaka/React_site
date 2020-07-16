@@ -8,7 +8,7 @@ function NavBar() {
     return (
         <nav className={style.app_nav}>
             <div className={style.item}>
-                <NavLink to="/profile" activeClassName={style.activeLink}> Profile </NavLink>
+                <NavLink to="/profile/2" activeClassName={style.activeLink}> Profile </NavLink>
             </div>
             <div className={style.item}>
                 <NavLink to="/dialogues" activeClassName={style.activeLink}> Messages </NavLink>
