@@ -3,19 +3,24 @@
     background-color: #2e2e2e;
   }
   
-  .app_header img{
+.app_header img{
     width: 130px;
     height: 40px;
     padding: 10px 0 0 20px;
-  }
+}
 
-  .App_logo {
+.App_logo {
     height: 40vmin;
     pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App_logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
+}
+
+.loginBlock{
+    float: right;
+    padding: 15px;
+    color: white;
+}
+
+.loginBlock a{
+    text-decoration: none;
+    color: white;
+}
