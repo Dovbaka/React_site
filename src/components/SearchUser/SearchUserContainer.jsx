@@ -7,34 +7,29 @@ import {
     subscribeActionCreator, toggleIsFetchingActionCreator,
     unsubscribeActionCreator
 } from "../../redux/searchUserReducer";
-import * as axios from "axios";
 import Preloader from "../Common/Preloader/Preloader.jsx";
+import {usersAPI} from "../../api/api";
 
 
 class SearchUserContainer extends React.Component{
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}
-        &count=${this.props.pageSize}`, {withCredentials: true}).then(response => {
+
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
             this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalCount(response.data.totalCount-2500);
-            /*[{id: 1, fullName: "Arthur Morgan", status: "Where's Lenny?", location:{city: "Boston", country: "America"}, subscribed: true, avatar:"https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x"},
-                {id: 2, fullName: "John Marston", status: "I'm gonna take my horse to the old time road", location:{city: "Black Water", country: "America"}, subscribed: true, avatar:"https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" },
-                {id: 3, fullName: "Dutch van der Linde", status: "I have a god damn plan! We need just one score!", location:{city: "Nuevo Paraíso", country: "Mexico"}, subscribed: false, avatar:"https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" },
-                {id: 4, fullName: "Lenny Summers", status: "I'm dead LOL", location:{city: "Boston", country: "America"}, subscribed: false, avatar:"https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" },
-            ]*/
+            this.props.setUsers(response.items);
+            this.props.setTotalCount(response.totalCount-2500);
         });
     }
 
     onPageChange = (pageNumber) => {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}
-        &count=${this.props.pageSize}`, {withCredentials: true}).then(response => {
+
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
             this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items)});
+            this.props.setUsers(response.items)});
     }
 
     render() {
