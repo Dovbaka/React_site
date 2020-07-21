@@ -2,34 +2,23 @@ import React from "react";
 import {connect} from "react-redux";
 import SearchUser from "./SearchUser";
 import {
+    getUsersThunkCreator,
     setCurrentPageActionCreator, setTotalCountActionCreator,
     setUsersActionCreator,
-    subscribeActionCreator, subscribeInProgressActionCreator, toggleIsFetchingActionCreator,
-    unsubscribeActionCreator
+     subscribeInProgressActionCreator, subscribeThunkCreator, toggleIsFetchingActionCreator,
+    unsubscribeThunkCreator
 } from "../../redux/searchUserReducer";
 import Preloader from "../Common/Preloader/Preloader.jsx";
-import {usersAPI} from "../../api/api";
 
 
 class SearchUserContainer extends React.Component{
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(response.items);
-            this.props.setTotalCount(response.totalCount-2500);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChange = (pageNumber) => {
-        this.props.toggleIsFetching(true);
-        this.props.setCurrentPage(pageNumber);
-
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(response.items)});
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -66,10 +55,10 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         subscribeUser: (userId) => {
-            dispatch(subscribeActionCreator(userId))
+            dispatch(subscribeThunkCreator(userId))
         },
         unsubscribeUser: (userId) => {
-            dispatch(unsubscribeActionCreator(userId))
+            dispatch(unsubscribeThunkCreator(userId))
         },
         setUsers: (users) => {
             dispatch(setUsersActionCreator(users))
@@ -85,6 +74,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         subscribeInProgress: (subInProgress, userId) => {
             dispatch(subscribeInProgressActionCreator(subInProgress, userId))
+        },
+        getUsers: (currentPage,pageSize) => {
+            dispatch(getUsersThunkCreator(currentPage, pageSize))
         },
 
     }

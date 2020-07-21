@@ -1,7 +1,6 @@
 import React from "react";
 import style from './SearchUser.module.css'
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
 
 function SearchUser (props){
 
@@ -43,35 +42,11 @@ function SearchUser (props){
                     <div className={style.sub}>
                         {el.followed ?
                             <button disabled={props.subInProgress.some(id => id === el.id)} onClick={() => {
-                                props.subscribeInProgress(true, el.id);
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,
-                                    {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "dfcf160b-85ae-4f3c-89c0-655ed471cb0a"
-                                        }
-                                    }).then(response => {
-                                if(response.data.resultCode === 0){
-                                    props.unsubscribeUser(el.id)
-                                }
-                                    props.subscribeInProgress(false , el.id);
-                                });
+                                props.unsubscribeUser(el.id);
                             }}> Unsubscribe </button>
 
                             : <button disabled={props.subInProgress.some(id => id === el.id)} onClick={() => {
-                                props.subscribeInProgress(true, el.id);
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{},
-                                    {
-                                        withCredentials: true,
-                                        headers: {
-                                        "API-KEY": "dfcf160b-85ae-4f3c-89c0-655ed471cb0a"
-                                    }
-                                }).then(response => {
-                                    if(response.data.resultCode === 0){
-                                        props.subscribeUser(el.id)
-                                    }
-                                    props.subscribeInProgress(false, el.id);
-                                });
+                                props.subscribeUser(el.id);
                             }}> Subscribe </button> }
                     </div>
                 </div>

@@ -26,13 +26,11 @@ export const usersAPI = {
     },
 
     deleteSub(id){
-        return instance.delete(`follow/${id}`,)
-            .then(response => {return response.data});
+        return instance.delete(`follow/${id}`);
     },
 
     postSub(id){
-        return instance.delete(`follow/${id}`,)
-            .then(response => {return response.data});
+        return instance.post(`follow/${id}`);
     }
 }
 

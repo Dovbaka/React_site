@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const SUBSCRIBE = 'SUBSCRIBE';
 const UNSUBSCRIBE = 'UNSUBSCRIBE';
 const SET_USERS = 'SET-USERS';
@@ -121,5 +123,44 @@ export function subscribeInProgressActionCreator(InProgress, userId){
         userId
     }
 }
+
+export const getUsersThunkCreator = (currentPage,pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetchingActionCreator(true));
+        dispatch(setCurrentPageActionCreator(currentPage));
+
+        usersAPI.getUsers(currentPage, pageSize).then(response => {
+            dispatch(toggleIsFetchingActionCreator(false));
+            dispatch(setUsersActionCreator(response.items));
+            dispatch(setTotalCountActionCreator(response.totalCount-2500));
+        });
+    }
+}
+
+export const subscribeThunkCreator = (id) => {
+    return (dispatch) => {
+        dispatch(subscribeInProgressActionCreator(true, id));
+        usersAPI.postSub(id).then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(subscribeActionCreator(id));
+            }
+            dispatch(subscribeInProgressActionCreator(false, id));
+        });
+    }
+}
+
+export const unsubscribeThunkCreator = (id) => {
+    return (dispatch) => {
+        dispatch(subscribeInProgressActionCreator(true, id));
+        usersAPI.deleteSub(id).then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(unsubscribeActionCreator(id));
+            }
+            dispatch(subscribeInProgressActionCreator(false, id));
+        });
+    }
+}
+
+
 
 export default searchUserReducer;

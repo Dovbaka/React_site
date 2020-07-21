@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const ADD_POST_CONTENT = 'ADD-POST-CONTENT';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -75,6 +77,14 @@ export function setUserProfileActionCreator(profile){
     return {
         type: SET_USER_PROFILE,
         profile
+    }
+}
+
+export const setUserProfileThunkCreator = (userId) => {
+    return (dispatch) => {
+        usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfileActionCreator(response));
+        });
     }
 }
 
