@@ -4,13 +4,15 @@ const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const SUBSCRIBE_IN_PROGRESS = 'SUBSCRIBE-IN-PROGRESS';
 
 let initializationState = {
     users: [],
     pageSize:100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    subInProgress: []
 };
 
 function searchUserReducer(state = initializationState, action) {
@@ -54,6 +56,15 @@ function searchUserReducer(state = initializationState, action) {
 
         case TOGGLE_IS_FETCHING:{
             return { ...state, isFetching: action.isFetching}
+        }
+
+        case SUBSCRIBE_IN_PROGRESS:{
+            return {
+                ...state,
+                subInProgress: action.InProgress ?
+                    [...state.subInProgress, action.userId] :
+                    state.subInProgress.filter(id => id != action.userId)
+            }
         }
 
         default:
@@ -100,6 +111,14 @@ export function toggleIsFetchingActionCreator(isFetching){
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
+    }
+}
+
+export function subscribeInProgressActionCreator(InProgress, userId){
+    return {
+        type: SUBSCRIBE_IN_PROGRESS,
+        InProgress,
+        userId
     }
 }
 

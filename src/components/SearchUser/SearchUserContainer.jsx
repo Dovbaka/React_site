@@ -4,7 +4,7 @@ import SearchUser from "./SearchUser";
 import {
     setCurrentPageActionCreator, setTotalCountActionCreator,
     setUsersActionCreator,
-    subscribeActionCreator, toggleIsFetchingActionCreator,
+    subscribeActionCreator, subscribeInProgressActionCreator, toggleIsFetchingActionCreator,
     unsubscribeActionCreator
 } from "../../redux/searchUserReducer";
 import Preloader from "../Common/Preloader/Preloader.jsx";
@@ -41,7 +41,11 @@ class SearchUserContainer extends React.Component{
                                 users={this.props.users}
                                 onPageChange={this.onPageChange}
                                 unsubscribeUser={this.props.unsubscribeUser}
-                                subscribeUser={this.props.subscribeUser}/>}
+                                subscribeUser={this.props.subscribeUser}
+                                subscribeInProgress={this.props.subscribeInProgress}
+                                subInProgress = {this.props.subInProgress}
+                                />
+                                }
 
             </div>
     }
@@ -54,7 +58,8 @@ let mapStateToProps = (state) => {
         pageSize: state.searchUserPage.pageSize,
         totalUsersCount: state.searchUserPage.totalUsersCount,
         currentPage: state.searchUserPage.currentPage,
-        isFetching: state.searchUserPage.isFetching
+        isFetching: state.searchUserPage.isFetching,
+        subInProgress: state.searchUserPage.subInProgress,
     }
 };
 
@@ -78,6 +83,10 @@ let mapDispatchToProps = (dispatch) => {
         toggleIsFetching: (isFetching) => {
             dispatch(toggleIsFetchingActionCreator(isFetching))
         },
+        subscribeInProgress: (subInProgress, userId) => {
+            dispatch(subscribeInProgressActionCreator(subInProgress, userId))
+        },
+
     }
 };
 

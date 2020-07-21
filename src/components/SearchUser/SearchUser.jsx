@@ -42,7 +42,8 @@ function SearchUser (props){
                 </span>
                     <div className={style.sub}>
                         {el.followed ?
-                            <button onClick={() => {
+                            <button disabled={props.subInProgress.some(id => id === el.id)} onClick={() => {
+                                props.subscribeInProgress(true, el.id);
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,
                                     {
                                         withCredentials: true,
@@ -53,10 +54,12 @@ function SearchUser (props){
                                 if(response.data.resultCode === 0){
                                     props.unsubscribeUser(el.id)
                                 }
+                                    props.subscribeInProgress(false , el.id);
                                 });
                             }}> Unsubscribe </button>
 
-                            : <button onClick={() => {
+                            : <button disabled={props.subInProgress.some(id => id === el.id)} onClick={() => {
+                                props.subscribeInProgress(true, el.id);
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{},
                                     {
                                         withCredentials: true,
@@ -67,6 +70,7 @@ function SearchUser (props){
                                     if(response.data.resultCode === 0){
                                         props.subscribeUser(el.id)
                                     }
+                                    props.subscribeInProgress(false, el.id);
                                 });
                             }}> Subscribe </button> }
                     </div>

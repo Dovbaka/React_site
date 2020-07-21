@@ -52,6 +52,11 @@
     outline:none;
 }
 
+.sub button:disabled, button[disabled]{
+    border:1px solid #c1c1c1;
+    background:linear-gradient(to bottom, #dbdbdb 5%, #c2c2c2 100%);
+}
+
 .pageNumbers{
     text-align: center;
     padding: 20px 0px;
