@@ -19,7 +19,6 @@ function Dialogues(props) {
         let text = writeMessage.current.value;
         props.updateMessageText(text);
     }
-    if(!props.isAuth) return <Redirect to={'/login'} />;
 
     return (
         <div className={style.dialogues}>

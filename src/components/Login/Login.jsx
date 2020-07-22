@@ -2,7 +2,7 @@ import React from "react";
 import style from './Login.module.css';
 
 function Login(props) {
-    return <form action={"action_page.php"} method={"post"}>
+    return <form action={"https://social-network.samuraijs.com/"} method={"post"}>
         <div className={style.container}>
             <label htmlFor={"uname"}><b>Username</b></label>
             <input type={"text"} placeholder={"Enter Username"} required/>
