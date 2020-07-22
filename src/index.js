@@ -15,12 +15,4 @@ ReactDOM.render(
         </Provider>
     </BrowserRouter>, document.getElementById('root'));
 
-
-/*store.subscribe(() => {
-    let state = store.getState();
-    renderEntireTree(state);
-});*/
-
-//state={state} dispatch={store.dispatch.bind(store)}
-
 serviceWorker.unregister();

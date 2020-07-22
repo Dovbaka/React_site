@@ -1,6 +1,6 @@
 import React from 'react'
-import Dialogues from "../Dialogues";
-import {sendMessageActionCreator, updateMessageActionCreator} from "../../../redux/dialoguesReducer";
+import Dialogues from "./Dialogues";
+import {sendMessageActionCreator, updateMessageActionCreator} from "../../redux/dialoguesReducer";
 import {connect} from "react-redux";
 
 /*function DialoguesContainer(props) {
@@ -35,7 +35,8 @@ let mapStateToProps = (state) => {
     return {
         baseMessages: state.messagePage.baseMessages,
         baseTexts: state.messagePage.baseTexts,
-        newMessageText: state.messagePage.newMessageText
+        newMessageText: state.messagePage.newMessageText,
+        isAuth: state.authentication.isAuth
     }
 };
 

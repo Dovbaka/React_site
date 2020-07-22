@@ -10,7 +10,8 @@ function ProfileInfo(props) {
     return (
         <div>
             <div className={style.descriptionBlock}>
-                <img src={props.profile.photos.large} alt="Avatar"/>
+                <img src={props.profile.photos.large == null? 'https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x' :
+                    props.profile.photos.large} alt="Avatar"/>
                 <h2>{props.profile.fullName}</h2>
                 <p>Description: {props.profile.aboutMe}</p>
                 <p>Looking for a job: {props.profile.lookingForAJob ? "Yes" : "No"}</p>

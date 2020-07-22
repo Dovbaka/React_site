@@ -21,8 +21,7 @@ export const usersAPI = {
     },
 
     getAuth(){
-        return instance.get(`auth/me`)
-            .then(response => {return response.data});
+        return instance.get(`auth/me`);
     },
 
     deleteSub(id){

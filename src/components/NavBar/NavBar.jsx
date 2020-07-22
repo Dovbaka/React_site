@@ -4,11 +4,11 @@ import {NavLink} from "react-router-dom";
 import FriendsContainer from "../Friends/FriendsContainer ";
 
 
-function NavBar() {
+function NavBar(props) {
     return (
         <nav className={style.app_nav}>
             <div className={style.item}>
-                <NavLink to="/profile/2" activeClassName={style.activeLink}> Profile </NavLink>
+                <NavLink to={"/profile/" + (props.userId? props.userId : "2") } activeClassName={style.activeLink}> Profile </NavLink>
             </div>
             <div className={style.item}>
                 <NavLink to="/dialogues" activeClassName={style.activeLink}> Messages </NavLink>

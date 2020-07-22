@@ -34,9 +34,10 @@ export function setUserDataActionCreator(userId, email, login){
 
 export const getAuthThunkCreator = () => {
     return (dispatch) => {
-        usersAPI.getAuth().then(response => {
-            if(response.resultCode === 0){
-                let {id, email, login} = response.data;
+        usersAPI.getAuth().
+        then(response => {
+            if(response.data.resultCode === 0){
+                let {id, email, login} = response.data.data;
                 dispatch(setUserDataActionCreator(id, email, login));
             }
         })
