@@ -13,7 +13,7 @@ function ProfileInfo(props) {
                 <img src={props.profile.photos.large == null? 'https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x' :
                     props.profile.photos.large} alt="Avatar"/>
                 <h2>{props.profile.fullName}</h2>
-                <ProfileStatus status={"Hello mather Fucker"}/>
+                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                 <p>Description: {props.profile.aboutMe}</p>
                 <p>Looking for a job: {props.profile.lookingForAJob ? "Yes" : "No"}</p>
                 <p>Job Description: {props.profile.lookingForAJobDescription}</p>

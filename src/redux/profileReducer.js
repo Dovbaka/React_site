@@ -1,8 +1,11 @@
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
+
 
 const ADD_POST_CONTENT = 'ADD-POST-CONTENT';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_USER_STATUS = 'SET-USER-STATUS';
+const UPDATE_USER_STATUS = 'UPDATE-USER-STATUS';
 
 
 
@@ -23,6 +26,7 @@ let initializationState = {
     ],
     newPostText:'',
     profile: null,
+    status: ""
 };
 
 function profileReducer(state = initializationState, action) {
@@ -55,6 +59,13 @@ function profileReducer(state = initializationState, action) {
             }
         }
 
+        case SET_USER_STATUS:{
+            return {
+                ...state,
+                status: action.status
+            }
+        }
+
         default:
             return state;
     }
@@ -80,10 +91,35 @@ export function setUserProfileActionCreator(profile){
     }
 }
 
+export function setUserStatusActionCreator(status){
+    return {
+        type: SET_USER_STATUS,
+        status
+    }
+}
+
 export const setUserProfileThunkCreator = (userId) => {
     return (dispatch) => {
-        usersAPI.getProfile(userId).then(response => {
+        profileAPI.getProfile(userId).then(response => {
             dispatch(setUserProfileActionCreator(response));
+        });
+    }
+}
+
+export const setUserStatusThunkCreator = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId).then(response => {
+            dispatch(setUserStatusActionCreator(response.data));
+        });
+    }
+}
+
+export const updateUserStatusThunkCreator = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(setUserStatusActionCreator(status));
+            }
         });
     }
 }

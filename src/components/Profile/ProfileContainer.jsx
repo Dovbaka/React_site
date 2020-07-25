@@ -1,7 +1,11 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setUserProfileThunkCreator} from "../../redux/profileReducer";
+import {
+    setUserProfileThunkCreator,
+    setUserStatusThunkCreator,
+    updateUserStatusThunkCreator
+} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -11,13 +15,14 @@ class ProfileContainer extends React.Component{
     componentDidMount() {
         let userId = this.props.match.params.userId;
         this.props.setUserProfile(userId);
+        this.props.setUserStatus(userId);
     }
 
     render() {
 
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile/>
             </div>
         );
     }
@@ -28,6 +33,7 @@ class ProfileContainer extends React.Component{
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
+        status: state.profilePage.status
     }
 };
 
@@ -35,6 +41,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         setUserProfile: (profile) => {
             dispatch(setUserProfileThunkCreator(profile))
+        },
+        setUserStatus: (profile) => {
+            dispatch(setUserStatusThunkCreator(profile))
         }
     }
 };
