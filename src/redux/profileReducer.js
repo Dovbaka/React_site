@@ -5,7 +5,7 @@ const ADD_POST_CONTENT = 'ADD-POST-CONTENT';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_USER_STATUS = 'SET-USER-STATUS';
-const UPDATE_USER_STATUS = 'UPDATE-USER-STATUS';
+const SET_USER_PHOTO = 'SET-USER-PHOTO';
 
 
 
@@ -26,7 +26,11 @@ let initializationState = {
     ],
     newPostText:'',
     profile: null,
-    status: ""
+    status: "",
+    photos: {
+        large: null,
+        small: null
+    }
 };
 
 function profileReducer(state = initializationState, action) {
@@ -66,6 +70,13 @@ function profileReducer(state = initializationState, action) {
             }
         }
 
+        case SET_USER_PHOTO:{
+            return {
+                ...state,
+                photos: action.photo
+            }
+        }
+
         default:
             return state;
     }
@@ -98,6 +109,13 @@ export function setUserStatusActionCreator(status){
     }
 }
 
+export function setUserPhotoActionCreator(photo){
+    return {
+        type: SET_USER_PHOTO,
+        photo
+    }
+}
+
 export const setUserProfileThunkCreator = (userId) => {
     return (dispatch) => {
         profileAPI.getProfile(userId).then(response => {
@@ -119,6 +137,16 @@ export const updateUserStatusThunkCreator = (status) => {
         profileAPI.updateStatus(status).then(response => {
             if(response.data.resultCode === 0){
                 dispatch(setUserStatusActionCreator(status));
+            }
+        });
+    }
+}
+
+export const updateUserPhotoThunkCreator = (photo) => {
+    return (dispatch) => {
+        profileAPI.updatePhoto(photo).then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(setUserStatusActionCreator(photo));
             }
         });
     }

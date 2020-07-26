@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import ProfileInfo from "./ProfileInfo";
 import Profile from "../Profile";
-import {updateUserStatusThunkCreator} from "../../../redux/profileReducer";
+import {updateUserPhotoThunkCreator, updateUserStatusThunkCreator} from "../../../redux/profileReducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -15,7 +15,10 @@ let mapDispatchToProps = (dispatch) => {
     return {
         updateUserStatus: (profile) => {
             dispatch(updateUserStatusThunkCreator(profile))
-        }
+        },
+        updateUserPhoto: (photo) => {
+            dispatch(updateUserPhotoThunkCreator(photo))
+        },
     }
 };
 
