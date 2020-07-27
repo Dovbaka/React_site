@@ -1,3 +1,5 @@
+const SEND_MESSAGE = 'SEND-MESSAGE'
+
 let initializationState = {
     baseMessages: [
         {name:"Nick", pathId: 1},
@@ -9,28 +11,20 @@ let initializationState = {
     baseTexts: [
         {id: 1, text: "Hey, boy!"},
         {id: 2, text: "Have you seen Lenny?"}
-    ],
-    newMessageText:'',
+    ]
 };
 
 function dialoguesReducer(state = initializationState, action) {
     switch (action.type) {
-        case 'SEND-MESSAGE':{
+        case SEND_MESSAGE:{
             let message = {
                 id: state.baseTexts.length + 1,
-                text: state.newMessageText
+                text: action.value
             };
-            let stateCopy = {...state};
-            stateCopy.baseTexts = [...state.baseTexts];
-            stateCopy.newMessageText = '';
-            stateCopy.baseTexts.push(message);
-            return stateCopy;
-        }
-
-        case 'UPDATE-NEW-MESSAGE-TEXT':{
-            let stateCopy = {...state};
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                baseTexts:[...state.baseTexts, message]
+            }
         }
 
         default:
@@ -38,16 +32,10 @@ function dialoguesReducer(state = initializationState, action) {
     }
 }
 
-export function sendMessageActionCreator(){
+export function sendMessageActionCreator(value){
     return {
-        type: 'SEND-MESSAGE'
-    }
-}
-
-export function updateMessageActionCreator(text) {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newText: text
+        type: SEND_MESSAGE,
+        value
     }
 }
 

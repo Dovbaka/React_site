@@ -4,6 +4,7 @@ import friendsBarReducer from "./friendsBarReducer";
 import dialoguesReducer from "./dialoguesReducer";
 import searchUserReducer from "./searchUserReducer";
 import authReducer from "./authReducer";
+import {reducer as formReducer} from 'redux-form'
 import thunkMiddleware from "redux-thunk"
 
 let reducers = combineReducers({
@@ -11,7 +12,8 @@ let reducers = combineReducers({
     messagePage: dialoguesReducer,
     friendsBar: friendsBarReducer,
     searchUserPage: searchUserReducer,
-    authentication: authReducer
+    authentication: authReducer,
+    form: formReducer
 });
 
 let storeRedux = createStore(reducers, applyMiddleware(thunkMiddleware));

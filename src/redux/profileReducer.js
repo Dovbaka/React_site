@@ -2,7 +2,6 @@ import {profileAPI} from "../api/api";
 
 
 const ADD_POST_CONTENT = 'ADD-POST-CONTENT';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_USER_STATUS = 'SET-USER-STATUS';
 const SET_USER_PHOTO = 'SET-USER-PHOTO';
@@ -38,23 +37,15 @@ function profileReducer(state = initializationState, action) {
         case ADD_POST_CONTENT:{
             let newContent = {
                 id: state.basePosts.length + 1,
-                text: state.newPostText,
+                text: action.newPostBody,
                 likes: 0
             };
-            let stateCopy = {...state};
-            stateCopy.basePosts = [...state.basePosts];
-            stateCopy.basePosts.push(newContent);
-            stateCopy.newPostText = '';
-            return stateCopy;
-        }
-
-
-        case UPDATE_NEW_POST_TEXT:{
             return {
                 ...state,
-                newPostText: action.newText
+                basePosts: [...state.basePosts, newContent]
             }
         }
+
 
         case SET_USER_PROFILE:{
             return {
@@ -82,16 +73,10 @@ function profileReducer(state = initializationState, action) {
     }
 }
 
-export function addPostActionCreator(){
+export function addPostActionCreator(newPostBody){
     return {
-        type: ADD_POST_CONTENT
-    }
-}
-
-export function updatePostActionCreator(text){
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
+        type: ADD_POST_CONTENT,
+        newPostBody
     }
 }
 
