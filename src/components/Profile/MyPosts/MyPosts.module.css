@@ -36,6 +36,7 @@
 .descriptionBlock textarea{
     margin-left: 70px;
     height: 50px;
+    border: 1px solid #ccc;
     width: 300px;
     border-radius: 5px;
 }

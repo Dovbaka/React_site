@@ -1,15 +1,19 @@
 import React from "react";
 import style from './Login.module.css';
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, requiredField} from "../../redux/utils/validators/validators";
+import {Input} from "../Common/FormsControls/FormsControls";
+
+const maxLength15 = maxLengthCreator(15);
 
 function LoginForm(props) {
     return <form onSubmit={props.handleSubmit}>
         <div className={style.container}>
             <label htmlFor={"uname"}><b>Username</b></label>
-            <Field component={"input"} type={"text"} placeholder={"Enter Username"} name={"userName"} required/>
+            <Field component={Input} validate={[requiredField,maxLength15]} type={"text"} placeholder={"Enter Username"} name={"userName"} required/>
 
                 <label htmlFor={"psw"}><b>Password</b></label>
-                <Field component={"input"} type={"password"} placeholder={"Enter Password"} name={"password"} required/>
+                <Field component={Input} validate={[requiredField,maxLength15]} type={"password"} placeholder={"Enter Password"} name={"password"} required/>
 
                     <button type={"submit"}>Login</button>
                     <label>

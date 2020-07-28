@@ -1,0 +1,49 @@
+.formControl {
+
+}
+
+.error input,
+.error textarea{
+    border: 2px solid #f44336 !important;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #f44336; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    width: auto;
+    padding: 5px 15px;
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    white-space: nowrap;
+}
+
+.inputTooltipPosition {
+    top: -62px;
+    left: 105px;
+}
+
+.textareaTooltipPosition {
+    top: -93px;
+    left: 105px;
+}
+
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f44336 transparent transparent transparent;
+}
