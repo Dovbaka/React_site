@@ -11,6 +11,7 @@ form {
     border: none;
     cursor: pointer;
     width: 100%;
+    outline:none;
 }
 
 .container button:hover {
@@ -21,7 +22,11 @@ form {
     padding: 110px 150px 0px 150px;
 }
 
-.psw span {
+.field {
+    padding-bottom: 5px;
+}
+
+.psw {
     float: right;
     text-decoration: none;
 }
@@ -37,5 +42,30 @@ psw a{
     display: inline-block;
     box-sizing: border-box;
     border: 2px solid #ccc;
+    outline:none;
 }
 
+.formSummeryTooltipPosition {
+    width: auto;
+    padding: 5px 15px;
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    white-space: nowrap;
+    bottom: 73%;
+    left: 48%;
+}
+
+.formSummeryTooltipPosition::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f44336 transparent transparent transparent;
+}

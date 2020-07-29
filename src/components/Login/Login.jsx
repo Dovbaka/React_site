@@ -1,25 +1,34 @@
 import React from "react";
 import style from './Login.module.css';
 import {Field, reduxForm} from "redux-form";
-import {maxLengthCreator, requiredField} from "../../redux/utils/validators/validators";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import {Input} from "../Common/FormsControls/FormsControls";
+import {Redirect} from "react-router-dom";
 
-const maxLength15 = maxLengthCreator(15);
+const maxLength35 = maxLengthCreator(35);
 
 function LoginForm(props) {
     return <form onSubmit={props.handleSubmit}>
         <div className={style.container}>
-            <label htmlFor={"uname"}><b>Username</b></label>
-            <Field component={Input} validate={[requiredField,maxLength15]} type={"text"} placeholder={"Enter Username"} name={"userName"} required/>
-
+            <div className={style.field}>
+                <label htmlFor={"uname"}><b>Username</b></label>
+                <Field component={Input} validate={[requiredField, maxLength35]} type={"text"}
+                       placeholder={"Enter Username"} name={"email"} required/>
+            </div>
+            <div className={style.field}>
                 <label htmlFor={"psw"}><b>Password</b></label>
-                <Field component={Input} validate={[requiredField,maxLength15]} type={"password"} placeholder={"Enter Password"} name={"password"} required/>
+                <Field component={Input} validate={[requiredField, maxLength35]} type={"password"}
+                       placeholder={"Enter Password"} name={"password"} required/>
+            </div>
 
-                    <button type={"submit"}>Login</button>
-                    <label>
-                        <Field component={"input"} type={"checkbox"} name={"rememberMe"}/> Remember me
-                        <span className={style.psw}>Forgot <a >password?</a></span>
-                    </label>
+            <button type={"submit"}>Login</button>
+            {props.error && <div className={style.formSummeryTooltipPosition}>
+                {props.error}
+            </div>}
+            <label>
+                <Field component={"input"} type={"checkbox"} name={"rememberMe"}/> Remember me
+                <span className={style.psw}> Forgot <a>password?</a></span>
+            </label>
         </div>
 
         <div className={style.container} style={{backgroundColor: "#f1f1f1"}}>
@@ -33,11 +42,15 @@ const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 function Login(props) {
 
     const onSubmit = (formData) => {
-        console.log(formData);
+        props.login(formData.email, formData.password, formData.rememberMe);
+    }
+
+    if(props.isAuth){
+        return <Redirect to={"/profile/" + props.userId}/>
     }
 
     return <div>
-        <LoginReduxForm  onSubmit={onSubmit}/>
+        <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 
 }

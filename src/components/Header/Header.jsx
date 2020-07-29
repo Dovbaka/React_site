@@ -9,7 +9,7 @@ function Header(props) {
             <img src="https://www.pngkey.com/png/full/342-3429274_horde-technology-react-js-project.png"
                 className={style.App_logo} alt="logo" />
             <div className={style.loginBlock}>
-                { props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
+                { props.isAuth ? <div className={style.auth}> {props.login} <p onClick={props.logout}> Log out</p></div> : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     );

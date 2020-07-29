@@ -16,8 +16,15 @@
 
 .loginBlock{
     float: right;
-    padding: 15px;
+    padding: 15px 5px;
     color: white;
+}
+
+.auth p{
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 10pt;
 }
 
 .loginBlock a{
