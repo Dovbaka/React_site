@@ -1,7 +1,7 @@
-import React from 'react';
-import style from './NavBar.module.css';
+import React from "react";
+import style from "./NavBar.module.css";
 import {NavLink} from "react-router-dom";
-import FriendsContainer from "../Friends/FriendsContainer ";
+import FriendsContainer from "../Friends/FriendsContainer";
 
 
 function NavBar(props) {

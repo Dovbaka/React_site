@@ -3,7 +3,7 @@ import preloader from "../../../assets/images/loading.svg";
 
 function Preloader() {
     return <div>
-    <img src={preloader}
+    <img src={preloader} alt={"preloader"}
          style={{marginLeft: "auto", marginRight: "auto", display: "block", paddingTop: "50px"}
          }/>
 </div>

@@ -26,14 +26,14 @@ function SearchUser (props){
                 <div className={style.usersAvatar}>
                     <div>
                         <NavLink to={'/profile/' + el.id}>
-                            <img  src={el.photos.small == null ? "https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" : el.photos.small}/>
+                            <img src={el.photos.small == null ? "https://gravatar.com/avatar/3c4324e51d48814cdb025fed693cca29?s=200&d=mp&r=x" : el.photos.small} alt={"img"}/>
                         </NavLink>
                         </div>
                 </div>
                 <div className={style.users}>
                 <span className={style.info}>
                     <div>{el.name}</div>
-                    <div style={{fontSize: "8pt", padding: "5px 0px"}}>Status: {el.status}</div>
+                    <div className={style.status}>Status: {el.status}</div>
                 </span>
                     <span className={style.location}>
                     <div>From City</div>

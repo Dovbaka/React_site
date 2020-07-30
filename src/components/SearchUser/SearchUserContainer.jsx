@@ -3,12 +3,18 @@ import {connect} from "react-redux";
 import SearchUser from "./SearchUser";
 import {
     getUsersThunkCreator,
-    setCurrentPageActionCreator, setTotalCountActionCreator,
-    setUsersActionCreator,
-     subscribeInProgressActionCreator, subscribeThunkCreator, toggleIsFetchingActionCreator,
+     subscribeInProgressActionCreator, subscribeThunkCreator,
     unsubscribeThunkCreator
 } from "../../redux/searchUserReducer";
 import Preloader from "../Common/Preloader/Preloader.jsx";
+import {
+    getCurrentPage,
+    getIsFetching,
+    getPageSize,
+    getSubInProgress,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/searchUserSelector";
 
 
 class SearchUserContainer extends React.Component{
@@ -43,12 +49,12 @@ class SearchUserContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
-        users: state.searchUserPage.users,
-        pageSize: state.searchUserPage.pageSize,
-        totalUsersCount: state.searchUserPage.totalUsersCount,
-        currentPage: state.searchUserPage.currentPage,
-        isFetching: state.searchUserPage.isFetching,
-        subInProgress: state.searchUserPage.subInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        subInProgress: getSubInProgress(state),
     }
 };
 
@@ -59,18 +65,6 @@ let mapDispatchToProps = (dispatch) => {
         },
         unsubscribeUser: (userId) => {
             dispatch(unsubscribeThunkCreator(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageActionCreator(page))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountActionCreator(totalCount))
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingActionCreator(isFetching))
         },
         subscribeInProgress: (subInProgress, userId) => {
             dispatch(subscribeInProgressActionCreator(subInProgress, userId))
