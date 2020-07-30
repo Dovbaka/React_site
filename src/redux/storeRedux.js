@@ -6,6 +6,7 @@ import searchUserReducer from "./searchUserReducer";
 import authReducer from "./authReducer";
 import {reducer as formReducer} from 'redux-form'
 import thunkMiddleware from "redux-thunk"
+import appReducer from "./appReducer";
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -13,6 +14,7 @@ let reducers = combineReducers({
     friendsBar: friendsBarReducer,
     searchUserPage: searchUserReducer,
     authentication: authReducer,
+    app: appReducer,
     form: formReducer
 });
 

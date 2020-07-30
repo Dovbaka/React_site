@@ -8,7 +8,7 @@ function NavBar(props) {
     return (
         <nav className={style.app_nav}>
             <div className={style.item}>
-                <NavLink to={"/profile/" + (props.userId? props.userId : "2") } activeClassName={style.activeLink}> Profile </NavLink>
+                <NavLink to={(props.userId? ("/profile/" + props.userId) : "/login") } activeClassName={style.activeLink}> Profile </NavLink>
             </div>
             <div className={style.item}>
                 <NavLink to="/dialogues" activeClassName={style.activeLink}> Messages </NavLink>
