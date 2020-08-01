@@ -29,7 +29,7 @@ class ProfileStatus extends React.Component{
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.status !== this.props.status){
+        if(prevProps.status !== this.props.status){ //check if new status != old status (from request)
             this.setState({
                 status: this.props.status
             });
