@@ -5,6 +5,7 @@ const ADD_POST_CONTENT = 'ADD-POST-CONTENT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_USER_STATUS = 'SET-USER-STATUS';
 const SET_USER_PHOTO = 'SET-USER-PHOTO';
+const DELETE_POST = 'DELETE=POST'
 
 
 
@@ -68,6 +69,13 @@ function profileReducer(state = initializationState, action) {
             }
         }
 
+        case DELETE_POST:{
+            return {
+                ...state,
+                basePosts: state.basePosts.filter(p => p.id !== action.id),
+            }
+        }
+
         default:
             return state;
     }
@@ -98,6 +106,13 @@ export function setUserPhotoActionCreator(photo){
     return {
         type: SET_USER_PHOTO,
         photo
+    }
+}
+
+export function deletePostActionCreator(id){
+    return {
+        type: DELETE_POST,
+        id
     }
 }
 
