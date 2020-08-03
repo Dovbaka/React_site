@@ -2,21 +2,21 @@
     padding: 10px;
 }
 
-.descriptionBlock img{
+.descriptionBlock img {
     float: left;
     padding: 10px 10px;
     width: 230px;
     height: 230px;
 }
 
-.descriptionBlock h2{
+.descriptionBlock h2 {
     margin: 0;
     padding-left: 270px;
     font-size: 20pt;
     font-weight: normal;
 }
 
-.descriptionBlock p{
+.descriptionBlock p {
     margin: 0;
     padding-left: 270px;
     font-size: 13pt;

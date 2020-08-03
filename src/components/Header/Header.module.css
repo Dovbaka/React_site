@@ -1,9 +1,9 @@
-.app_header{
+.app_header {
     grid-area: header;
     background-color: #2e2e2e;
-  }
-  
-.app_header img{
+}
+
+.app_header img {
     width: 130px;
     height: 40px;
     padding: 10px 0 0 20px;
@@ -14,20 +14,20 @@
     pointer-events: none;
 }
 
-.loginBlock{
+.loginBlock {
     float: right;
     padding: 15px 5px;
     color: white;
 }
 
-.auth p{
+.auth p {
     display: inline-block;
     margin: 0 10px;
     cursor: pointer;
     font-size: 10pt;
 }
 
-.loginBlock a{
+.loginBlock a {
     text-decoration: none;
     color: white;
 }

@@ -1,0 +1,11 @@
+.pageNumbers {
+    text-align: center;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.selectedPage {
+    font-size: 14pt;
+    color: #f3cb00;
+    font-weight: bold;
+}

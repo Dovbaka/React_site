@@ -9,7 +9,7 @@
     padding-top: 20px;
 }
 
-.usersAvatar img{
+.usersAvatar img {
     border-radius: 100px;
     height: 100px;
     width: 100px;
@@ -19,7 +19,7 @@
 
 .users span {
     padding: 30px 20px 0 20px;
-    overflow:auto;
+    overflow: auto;
     display: inline-block;
 }
 
@@ -34,38 +34,27 @@
     margin-right: 100px;
 }
 
-.sub button{
+.sub button {
     margin-left: 20px;
-    box-shadow:inset 0 1px 0 0 #ffffff;
+    box-shadow: inset 0 1px 0 0 #ffffff;
     background: #ffffff linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    border-radius:6px;
-    border:1px solid #dcdcdc;
-    display:inline-block;
-    cursor:pointer;
-    color:#666666;
-    font-size:10pt;
-    font-weight:bold;
-    padding:6px 24px;
-    text-decoration:none;
-    text-shadow:0 1px 0 #ffffff;
-    outline:none;
-}
-
-.sub button:disabled, button[disabled]{
-    border:1px solid #c1c1c1;
-    background:linear-gradient(to bottom, #dbdbdb 5%, #c2c2c2 100%);
-}
-
-.pageNumbers{
-    text-align: center;
-    padding: 20px 0;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
     cursor: pointer;
+    color: #666666;
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+    outline: none;
 }
 
-.selectedPage{
-    font-size: 14pt;
-    color: #f3cb00;
-    font-weight: bold;
+.sub button:disabled, button[disabled] {
+    box-shadow: none;
+    border: 1px solid #c1c1c1;
+    background: linear-gradient(to bottom, #dbdbdb 5%, #c2c2c2 100%);
 }
 
 .status {

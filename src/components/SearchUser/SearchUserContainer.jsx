@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import SearchUser from "./SearchUser";
 import {
     getUsersThunkCreator,
-     subscribeInProgressActionCreator, subscribeThunkCreator,
+    subscribeInProgressActionCreator, subscribeThunkCreator,
     unsubscribeThunkCreator
 } from "../../redux/searchUserReducer";
 import Preloader from "../Common/Preloader/Preloader.jsx";
@@ -17,7 +17,7 @@ import {
 } from "../../redux/searchUserSelector";
 
 
-class SearchUserContainer extends React.Component{
+class SearchUserContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
@@ -29,20 +29,20 @@ class SearchUserContainer extends React.Component{
 
     render() {
         return <div>
-                {this.props.isFetching ? <Preloader/> :
-                    <SearchUser totalUsersCount={this.props.totalUsersCount}
-                                pageSize={this.props.pageSize}
-                                currentPage={this.props.currentPage}
-                                users={this.props.users}
-                                onPageChange={this.onPageChange}
-                                unsubscribeUser={this.props.unsubscribeUser}
-                                subscribeUser={this.props.subscribeUser}
-                                subscribeInProgress={this.props.subscribeInProgress}
-                                subInProgress = {this.props.subInProgress}
-                                />
-                                }
+            {this.props.isFetching ? <Preloader/> :
+                <SearchUser totalUsersCount={this.props.totalUsersCount}
+                            pageSize={this.props.pageSize}
+                            currentPage={this.props.currentPage}
+                            users={this.props.users}
+                            onPageChange={this.onPageChange}
+                            unsubscribeUser={this.props.unsubscribeUser}
+                            subscribeUser={this.props.subscribeUser}
+                            subscribeInProgress={this.props.subscribeInProgress}
+                            subInProgress={this.props.subInProgress}
+                />
+            }
 
-            </div>
+        </div>
     }
 
 }
@@ -69,11 +69,11 @@ let mapDispatchToProps = (dispatch) => {
         subscribeInProgress: (subInProgress, userId) => {
             dispatch(subscribeInProgressActionCreator(subInProgress, userId))
         },
-        getUsers: (currentPage,pageSize) => {
+        getUsers: (currentPage, pageSize) => {
             dispatch(getUsersThunkCreator(currentPage, pageSize))
         },
 
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (SearchUserContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchUserContainer);

@@ -1,7 +1,7 @@
 import React from "react";
 import style from '../ProfileInfo.module.css';
 
-class ProfileStatus extends React.Component{
+class ProfileStatus extends React.Component {
 
     state = {
         editMode: false,
@@ -20,7 +20,7 @@ class ProfileStatus extends React.Component{
         })
         this.props.updateUserStatus(this.state.status);
     }
-    
+
     onStatusChange = (e) => {
         this.setState({
             status: e.currentTarget.value
@@ -29,7 +29,7 @@ class ProfileStatus extends React.Component{
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.status !== this.props.status){ //check if new status != old status (from request)
+        if (prevProps.status !== this.props.status) { //check if new status != old status (from request)
             this.setState({
                 status: this.props.status
             });
@@ -44,8 +44,8 @@ class ProfileStatus extends React.Component{
             </div>}
             {this.state.editMode &&
             <div className={style.status}>
-                    Status: <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}
-                                   value={this.state.status}/>
+                Status: <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}
+                               value={this.state.status}/>
             </div>}
 
         </div>

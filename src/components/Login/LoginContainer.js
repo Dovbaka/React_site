@@ -11,8 +11,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        login: (email,password, rememberMe) => {
-            dispatch(loginThunkCreator(email,password, rememberMe))
+        login: (email, password, rememberMe) => {
+            dispatch(loginThunkCreator(email, password, rememberMe))
         },
         logout: () => {
             dispatch(logoutThunkCreator())
@@ -20,4 +20,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -8,7 +8,7 @@ import {
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 
-class ProfileContainer extends React.Component{
+class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
@@ -26,7 +26,6 @@ class ProfileContainer extends React.Component{
     }
 
 }
-
 
 let mapStateToProps = (state) => {
     return {
@@ -49,4 +48,4 @@ let mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
-    )(ProfileContainer);
+)(ProfileContainer);

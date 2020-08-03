@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
 import ProfileInfo from "./ProfileInfo";
-import Profile from "../Profile";
 import {updateUserPhotoThunkCreator, updateUserStatusThunkCreator} from "../../../redux/profileReducer";
 
 let mapStateToProps = (state) => {
@@ -22,6 +21,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-const ProfileInfoContainer = connect(mapStateToProps,mapDispatchToProps)(ProfileInfo);
+const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);
 
 export default ProfileInfoContainer;

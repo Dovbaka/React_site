@@ -11,7 +11,7 @@ form {
     border: none;
     cursor: pointer;
     width: 100%;
-    outline:none;
+    outline: none;
 }
 
 .container button:hover {
@@ -31,7 +31,7 @@ form {
     text-decoration: none;
 }
 
-psw a{
+psw a {
     text-decoration: none;
 }
 
@@ -42,7 +42,7 @@ psw a{
     display: inline-block;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    outline:none;
+    outline: none;
 }
 
 .formSummeryTooltipPosition {

@@ -1,6 +1,6 @@
 import {getAuthThunkCreator} from "./authReducer";
 
-const IS_INITIALIZED = 'IS-INITIALIZED';
+const IS_INITIALIZED = 'APP/IS-INITIALIZED';
 
 let initializationState = {
     initialized: false,
@@ -9,8 +9,8 @@ let initializationState = {
 function appReducer(state = initializationState, action) {
     switch (action.type) {
 
-        case IS_INITIALIZED:{
-            return { ...state, initialized: true}
+        case IS_INITIALIZED: {
+            return {...state, initialized: true}
         }
 
         default:
@@ -18,17 +18,15 @@ function appReducer(state = initializationState, action) {
     }
 }
 
-export function initializingActionCreator(){
+export function initializingActionCreator() {
     return {
         type: IS_INITIALIZED,
 
     }
 }
 
-export const initializeAppThunkCreator = () => {
-    return (dispatch) => {
-        dispatch(getAuthThunkCreator()).then(() => dispatch(initializingActionCreator()));
-    }
+export const initializeAppThunkCreator = () => (dispatch) => {
+    dispatch(getAuthThunkCreator()).then(() => dispatch(initializingActionCreator()));
 }
 
 export default appReducer;
