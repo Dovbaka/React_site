@@ -1,5 +1,5 @@
 .descriptionBlock {
-    padding: 10px;
+    padding: 50px;
     display:inline-block;
     text-align: center;
 }
@@ -8,6 +8,20 @@
     display: flex;
     align-items: center;
     justify-content: left;
+    position: relative;
+    float: right;
+
+}
+
+.posts {
+    display: inline-block;
+}
+
+.posts h2 {
+    margin: 0;
+    padding-top: 20px;
+    font-size: 16pt;
+    font-weight: normal;
 }
 
 .descriptionBlock button{
@@ -32,9 +46,9 @@
 }
 
 .descriptionBlock textarea{
-    margin-left: 70px;
     height: 50px;
     border: 1px solid #ccc;
-    width: 300px;
+    width: 465px;
     border-radius: 5px;
+    resize: none;
 }

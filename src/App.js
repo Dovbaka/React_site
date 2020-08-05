@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import {Route} from "react-router-dom"
+import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
 import SearchUserContainer from "./components/SearchUser/SearchUserContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
+import store from "./redux/storeRedux";
+import {compose} from "redux";
 
 class App extends React.Component {
 
@@ -51,4 +53,17 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const AppContainer = compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(App);
+
+const AppWithRouter = () => {
+   return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
+    </BrowserRouter>
+}
+
+export default AppWithRouter;

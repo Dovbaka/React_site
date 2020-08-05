@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from "react-redux";
 import ProfileInfo from "./ProfileInfo";
 import {updateUserPhotoThunkCreator, updateUserStatusThunkCreator} from "../../../redux/profileReducer";

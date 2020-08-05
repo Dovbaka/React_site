@@ -1,7 +1,18 @@
-.pageNumbers {
+.paginator {
     text-align: center;
     padding: 20px 0;
     cursor: pointer;
+}
+
+.paginator button{
+    position: absolute;
+    margin-top: 3px;
+}
+
+.pageNumbers{
+    width: 650px;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .selectedPage {

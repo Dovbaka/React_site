@@ -27,7 +27,8 @@ function LoginForm(props) {
             </div>}
             <label>
                 <Field component={"input"} type={"checkbox"} name={"rememberMe"}/> Remember me
-                <span className={style.psw}> Forgot <a>password?</a></span>
+                <span className={style.psw}><a href={"https://social-network.samuraijs.com/signUp"}>
+                    Don't have an account?</a></span>
             </label>
         </div>
 

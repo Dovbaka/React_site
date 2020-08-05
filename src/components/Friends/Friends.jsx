@@ -4,15 +4,15 @@ import style from './Friends.module.css'
 
 function Friends(props) {
 
-    let Friends = props.base.map(el => (
-        <span>
+    let Friend = props.base.map(el => (
+        <span key={el.id}>
                 <img src={el.avatar} alt ="avatar"/>
                 <div className={style.caption}>{el.name}</div>
         </span>));
 
     return (
         <div className={style.friends_online}>
-        {Friends}
+        {Friend}
         </div>
     )
 }

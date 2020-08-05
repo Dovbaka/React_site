@@ -17,16 +17,16 @@ function NavBar(props) {
                 <NavLink to="/search" activeClassName={style.activeLink}> Search users </NavLink>
             </div>
             <div className={style.item}>
-                <a>News</a>
+                News
             </div>
             <div className={style.item}>
-                <a>Music</a>
+                Music
             </div>
             <div className={style.item}>
-                <a>Settings</a>
+                Settings
             </div>
             <div className={style.item + ' '  + style.friends}>
-                <a>Friends <span className={style.online}>online</span></a>
+                Friends <span className={style.online}>online</span>
                 <FriendsContainer />
             </div>
         </nav>

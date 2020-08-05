@@ -10,7 +10,7 @@ const SUBSCRIBE_IN_PROGRESS = 'SEARCH-USER/SUBSCRIBE-IN-PROGRESS';
 
 let initializationState = {
     users: [],
-    pageSize: 100,
+    pageSize: 20,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
@@ -130,7 +130,7 @@ export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) 
     let response = await usersAPI.getUsers(currentPage, pageSize);
     dispatch(toggleIsFetchingActionCreator(false));
     dispatch(setUsersActionCreator(response.items));
-    dispatch(setTotalCountActionCreator(response.totalCount - 2500));
+    dispatch(setTotalCountActionCreator(response.totalCount));
 }
 
 export const subscribeThunkCreator = (id) => async (dispatch) => {

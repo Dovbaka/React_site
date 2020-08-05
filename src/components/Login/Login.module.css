@@ -31,8 +31,9 @@ form {
     text-decoration: none;
 }
 
-psw a {
+.psw a {
     text-decoration: none;
+    color: #2e2e2e;
 }
 
 .container input[type=text], .container input[type=password] {

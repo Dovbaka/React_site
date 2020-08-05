@@ -15,6 +15,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/searchUserSelector";
+import Pagination from "../Pagination/Pagenation";
 
 
 class SearchUserContainer extends React.Component {
@@ -29,22 +30,22 @@ class SearchUserContainer extends React.Component {
 
     render() {
         return <div>
+            <Pagination totalItemsCount={this.props.totalUsersCount}
+                        pageSize={this.props.pageSize}
+                        currentPage={this.props.currentPage}
+                        onPageChange={this.onPageChange}
+                        portionSize={20}/>
+
             {this.props.isFetching ? <Preloader/> :
-                <SearchUser totalUsersCount={this.props.totalUsersCount}
-                            pageSize={this.props.pageSize}
-                            currentPage={this.props.currentPage}
-                            users={this.props.users}
-                            onPageChange={this.onPageChange}
+                <SearchUser users={this.props.users}
                             unsubscribeUser={this.props.unsubscribeUser}
                             subscribeUser={this.props.subscribeUser}
                             subscribeInProgress={this.props.subscribeInProgress}
                             subInProgress={this.props.subInProgress}
                 />
             }
-
         </div>
     }
-
 }
 
 let mapStateToProps = (state) => {

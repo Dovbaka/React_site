@@ -13,15 +13,15 @@ const loream = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellent
     " varius semper. Praesent semper nunc id leo tempus, in iaculis nibh dapibus." +
     " Praesent dictum urna quis urna vestibulum, at molestie magna porta.";
 
-const loream_shot = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta nisi mi," +
+/*const loream_shot = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta nisi mi," +
     " nec cursus lacus accumsan eu. Sed ut dictum justo. Donec non enim mi. Sed fringilla sed ante" +
-    " varius semper.";
+    " varius semper.";*/
 
 let initializationState = {
     basePosts: [
-        {id: 1, text: loream, likes: 21},
+        {id: 3, text: loream, likes: 21},
         {id: 2, text: loream, likes: 1},
-        {id: 3, text: loream, likes: 34}
+        {id: 1, text: loream, likes: 34}
     ],
     newPostText: '',
     profile: null,
@@ -42,7 +42,7 @@ function profileReducer(state = initializationState, action) {
             };
             return {
                 ...state,
-                basePosts: [...state.basePosts, newContent]
+                basePosts: [newContent, ...state.basePosts]
             }
         }
 

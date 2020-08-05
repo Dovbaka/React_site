@@ -16,9 +16,9 @@ function User(props) {
         <div className={style.users}>
                 <span className={style.info}>
                     <div>{props.user.name}</div>
-                    <div className={style.status}>Status: {props.user.status}</div>
+                    <div className={style.status}>{props.user.status ? "Status: " + props.user.status : ""}</div>
                 </span>
-            <span className={style.location}>
+                <span className={style.location}>
                     <div>From City</div>
                     <div>Country</div>
                 </span>
