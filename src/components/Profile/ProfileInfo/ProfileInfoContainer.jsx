@@ -1,11 +1,25 @@
 import {connect} from "react-redux";
 import ProfileInfo from "./ProfileInfo";
-import {updateUserPhotoThunkCreator, updateUserStatusThunkCreator} from "../../../redux/profileReducer";
+import {
+    saveProfileInfoThunkCreator,
+    updateUserPhotoThunkCreator,
+    updateUserStatusThunkCreator
+} from "../../../redux/profileReducer";
+import React from "react";
+
+function ProfileInfoContainer (props) {
+    return (
+        <div>
+            <ProfileInfo {...props}/>
+        </div>
+    );
+}
 
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        userId: state.authentication.userId,
     }
 };
 
@@ -17,9 +31,10 @@ let mapDispatchToProps = (dispatch) => {
         updateUserPhoto: (photo) => {
             dispatch(updateUserPhotoThunkCreator(photo))
         },
+        saveProfileInfo: (profile) => {
+            dispatch(saveProfileInfoThunkCreator(profile))
+        },
     }
 };
 
-const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);
-
-export default ProfileInfoContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfoContainer);

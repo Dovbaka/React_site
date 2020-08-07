@@ -2,10 +2,10 @@ import React from 'react';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
-function Profile() {
+function Profile(props) {
     return (
         <div>
-            <ProfileInfoContainer/>
+            <ProfileInfoContainer isOwner={props.isOwner}/>
             <MyPostsContainer />
         </div>
     );

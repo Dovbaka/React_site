@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
-import SearchUserContainer from "./components/SearchUser/SearchUserContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
@@ -11,6 +10,8 @@ import {connect, Provider} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
 import store from "./redux/storeRedux";
 import {compose} from "redux";
+
+const SearchUserContainer = React.lazy(() => import("./components/SearchUser/SearchUserContainer"));
 
 class App extends React.Component {
 
@@ -30,7 +31,9 @@ class App extends React.Component {
                 <div className="app_wrapper_content">
                     <Route path='/dialogues' render={() => <DialoguesContainer/>}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                    <Route path='/search' render={() => <SearchUserContainer/>}/>
+                    <Route path='/search' render={() => { return <Suspense fallback={<div/>}>
+                        <SearchUserContainer/>
+                    </Suspense>}}/>
                     <Route path='/login' render={() => <LoginContainer/>}/>
                 </div>
             </div>

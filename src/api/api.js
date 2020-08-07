@@ -12,14 +12,16 @@ export const usersAPI = {
 
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {return response.data});
+            .then(response => {
+                return response.data
+            });
     },
 
-    deleteSub(id){
+    deleteSub(id) {
         return instance.delete(`follow/${id}`);
     },
 
-    postSub(id){
+    postSub(id) {
         return instance.post(`follow/${id}`);
     }
 }
@@ -27,7 +29,9 @@ export const usersAPI = {
 export const profileAPI = {
 
     getProfile(userId = 1) {
-        return instance.get(`profile/${userId}`).then(response => {return response.data});
+        return instance.get(`profile/${userId}`).then(response => {
+            return response.data
+        });
     },
 
     getStatus(userId = 1) {
@@ -37,20 +41,30 @@ export const profileAPI = {
     updateStatus(status) {
         return instance.put(`profile/status`, {status: status});
     },
-    
+
     updatePhoto(photo) {
-        return instance.put(`profile/photo`, {photo});
+        let formData = new FormData();
+        formData.append("image", photo)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    },
+
+    saveProfileInfo(profile) {
+        return instance.put(`profile`, profile);
     }
 }
 
 export const authAPI = {
-    getAuth(){
+    getAuth() {
         return instance.get(`auth/me`);
     },
-    login(email,password,rememberMe){
+    login(email, password, rememberMe) {
         return instance.post(`auth/login`, {email, password, rememberMe});
     },
-    logout(){
+    logout() {
         return instance.delete(`auth/login`);
     }
 }

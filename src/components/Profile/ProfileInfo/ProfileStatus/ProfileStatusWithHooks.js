@@ -6,7 +6,7 @@ function ProfileStatusWithHooks(props) {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
 
-    useEffect(() => {
+    useEffect(() => { //Hook to update status when props change
         setStatus(props.status);
     }, [props.status]);
 
@@ -26,7 +26,7 @@ function ProfileStatusWithHooks(props) {
     return <div>
         {!editMode &&
         <div className={style.status}>
-            <span onDoubleClick={activateEditMode}>{!props.status ? "Change status" : "Status: " + props.status} </span>
+            <span onDoubleClick={props.isOwner? activateEditMode : null}>{!props.status ? "Change status" : "Status: " + props.status} </span>
         </div>}
         {editMode &&
         <div className={style.status}>

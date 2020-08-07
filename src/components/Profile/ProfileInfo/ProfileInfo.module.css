@@ -11,9 +11,14 @@
     padding-left: 50px;
 }
 
-.avatar img {
+.avatar {
     float: left;
     padding: 20px 20px;
+    width: 230px;
+    height: 230px;
+}
+
+.avatar img{
     width: 230px;
     height: 230px;
 }
@@ -35,4 +40,10 @@
 .status {
     font-size: 13pt;
     font-weight: normal;
+}
+
+.field label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 10px;
 }

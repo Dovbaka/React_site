@@ -5,7 +5,7 @@ const ADD_POST_CONTENT = 'PROFILE/ADD-POST-CONTENT';
 const SET_USER_PROFILE = 'PROFILE/SET-USER-PROFILE';
 const SET_USER_STATUS = 'PROFILE/SET-USER-STATUS';
 const SET_USER_PHOTO = 'PROFILE/SET-USER-PHOTO';
-const DELETE_POST = 'PROFILE/DELETE-POST'
+const DELETE_POST = 'PROFILE/DELETE-POST';
 
 
 const loream = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta nisi mi," +
@@ -25,11 +25,7 @@ let initializationState = {
     ],
     newPostText: '',
     profile: null,
-    status: "",
-    photos: {
-        large: null,
-        small: null
-    }
+    status: ""
 };
 
 function profileReducer(state = initializationState, action) {
@@ -64,7 +60,7 @@ function profileReducer(state = initializationState, action) {
         case SET_USER_PHOTO: {
             return {
                 ...state,
-                photos: action.photo
+                profile: {...state.profile, photos: action.photo}
             }
         }
 
@@ -135,7 +131,15 @@ export const updateUserStatusThunkCreator = (status) => async (dispatch) => {
 export const updateUserPhotoThunkCreator = (photo) => async (dispatch) => {
     let response = await profileAPI.updatePhoto(photo);
     if (response.data.resultCode === 0) {
-        dispatch(setUserStatusActionCreator(photo));
+        dispatch(setUserPhotoActionCreator(response.data.data.photos));
+    }
+}
+
+export const saveProfileInfoThunkCreator = (profile) => async (dispatch, getState) => {
+    const userId = getState().authentication.userId
+    const response = await profileAPI.saveProfileInfo(profile);
+    if (response.data.resultCode === 0) {
+        dispatch(setUserProfileThunkCreator(userId));
     }
 }
 
