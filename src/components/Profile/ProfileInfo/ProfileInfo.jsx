@@ -30,20 +30,25 @@ function ProfileInfo(props) {
 
     return (
         <div>
-            <div className={style.avatar}>
+            <div className={style.avatarContainer}>
                 <img src={props.profile.photos.large == null ? avatar : props.profile.photos.large} alt="Avatar"/>
-                {props.isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}
+                {props.isOwner && <div>
+                    <input type={"file"} onChange={mainPhotoSelected} id={style.customFileInput}/>
+                    <label htmlFor={style.customFileInput}>Upload photo</label>
+                </div>}
             </div>
-            <div className={style.allInfo}>
+            <div className={style.allInfoContainer}>
                 <div className={style.topInfo}>
                     <h2>{props.profile.fullName}</h2>
                     <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}
                                             isOwner={props.isOwner}/>
                 </div>
-                {editMode? <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/> :
-                    <ProfileData profile={props.profile} isOwner={props.isOwner}
-                                 setEditMode={()=> {setEditMode(true)}}/>}
-
+                <div>
+                    {editMode? <ProfileDataForm initialValues={props.profile} profile={props.profile}
+                                                onSubmit={onSubmit}/> :
+                        <ProfileData profile={props.profile} isOwner={props.isOwner}
+                                     setEditMode={()=> {setEditMode(true)}}/>}
+                </div>
             </div>
         </div>
     );
@@ -55,16 +60,22 @@ const Contact = ({contactTitle, contactValue}) => {
 
 const ProfileData = (props) => {
     return <div className={style.descriptionBlock}>
+        <div className={style.aboutMe}>
+            <h3>About me</h3>
+        </div>
         <p>{validateInfo(props.profile.aboutMe) ? "Description: " + props.profile.aboutMe : null}</p>
         <p>Looking for a job: {props.profile.lookingForAJob ? "Yes" : "No"}</p>
         <p>{validateInfo(props.profile.lookingForAJobDescription) ?
             "Job Description: " + props.profile.lookingForAJobDescription : null}</p>
+        <div className={style.aboutMe}>
+            <h3>Contacts</h3>
+        </div>
         {Object.keys(props.profile.contacts).map(cont => { //Get contacts info
             if (validateInfo(props.profile.contacts[cont]))
                 return <Contact key={cont} contactTitle={cont} contactValue={props.profile.contacts[cont]}/>
             else return null
         })}
-        {props.isOwner && <div><button onClick={props.setEditMode}>Edit</button></div>}
+        {props.isOwner && <div className={style.editButton}><button onClick={props.setEditMode}>Edit</button></div>}
     </div>
 }
 

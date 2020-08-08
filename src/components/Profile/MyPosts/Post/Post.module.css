@@ -1,19 +1,43 @@
 .item {
     color:#2e2e2e;
     overflow:auto;
-    margin-right: 15px;
+    background-color: white;
+    float: right;
+    width: 535px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
+    padding-left: 10px;
 }
 
-.item img {
+.info {
+    float: left;
+}
+
+.info h3{
+    margin: 18px 0 0 21px;
+}
+
+.info p{
+    margin: 0;
+    font-size: 10pt;
+    color: #6e6e6e;
+}
+
+.item .avatar img {
     height: 50px;
     width: 50px;
     border-radius: 100px;
     float: left;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 .likes {
     float: right;
     color: #c0b6bd;
+    margin-right: 15px;
+    margin-bottom: 15px;
 }
 
 .likes img {
@@ -23,9 +47,9 @@
     float: none;
 }
 
-.text {
-    padding-left: 15px;
+.text p{
+    display: inline-block;
+    margin: 15px;
     text-align: justify;
-    overflow:hidden;
     color: #2e2e2e;
 }

@@ -3,7 +3,10 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 
 const ProfileDataForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+    return <form onSubmit={props.handleSubmit} className={style.infoForm}>
+        <div className={style.aboutMe}>
+            <h3>About me</h3>
+        </div>
         <div className={style.field}>
             <label htmlFor={"fullName"}><b>Full name:</b></label>
             <Field component={"input"} name={"fullName"}/>
@@ -20,12 +23,15 @@ const ProfileDataForm = (props) => {
             <label htmlFor={"JobDescription"}><b>Job description:</b></label>
             <Field component={"input"} name={"lookingForAJobDescription"}/>
         </div>
+        <div className={style.aboutMe}>
+            <h3>Contacts</h3>
+        </div>
         <div className={style.descriptionBlock}>
             {Object.keys(props.profile.contacts).map(cont => {
                     return <ContactForm key={cont} contactTitle={cont}/>
             })}
         </div>
-        <div><button>Save</button></div>
+        <div className={style.editButton}><button>Save</button></div>
     </form>
 }
 

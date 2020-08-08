@@ -3,24 +3,66 @@
 }
 
 .topInfo {
-    padding: 10px 0;
+    padding-top: 10px;
 }
 
-.allInfo {
+.allInfoContainer {
+    width: 490px;
     float: left;
-    padding-left: 50px;
+    margin: 20px 0 0 80px;
+    padding: 0 40px 10px 20px;
+    background-color: white;
+    border-radius: 5px;
 }
 
-.avatar {
+.avatarContainer {
+    background-color: white;
     float: left;
-    padding: 20px 20px;
+    margin: 20px 20px;
+    padding: 20px;
+    width: 230px;
+}
+
+.avatarContainer img{
     width: 230px;
     height: 230px;
+    border:1px solid #cdcdcd;
+    margin-bottom: 10px;
 }
 
-.avatar img{
-    width: 230px;
-    height: 230px;
+.customFileInput {
+    color: transparent;
+    outline:none;
+}
+.avatarContainer .customFileInput::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#customFileInput {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+
+#customFileInput + label {
+    background: #2E2E2E;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: inherit;
+    outline: none;
+    padding: 8px 50px;
+    margin: 0 15px;
+
+}
+
+.customFileInput:hover::before {
+    background: #4a4a4a;
+}
+.customFileInput:active::before {
+    background: #2E2E2E;
 }
 
 .topInfo h2 {
@@ -30,7 +72,7 @@
 }
 
 .descriptionBlock p {
-    margin: 0;
+    margin: 7px 0;
     font-size: 13pt;
     font-weight: normal;
     max-width: 320px;
@@ -46,4 +88,48 @@
     display: inline-block;
     text-align: right;
     padding-right: 10px;
+}
+
+.aboutMe h3 {
+    position: relative;
+    overflow: hidden;
+    font-size: 13pt;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.aboutMe h3:after {
+    display: inline-block;
+    content: "";
+    height: 1px;
+    background: #7a7a7a;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
+.editButton button{
+    background: transparent;
+    border:none;
+    display:inline-block;
+    cursor:pointer;
+    color: #a7a7a7;
+    font-size:15px;
+    text-decoration:none;
+    outline:none;
+    margin: 10px 0;
+    float: right;
+}
+
+.infoForm {
+    border: none;
+}
+
+.field input {
+    border: 1px hidden #ececec;
+    border-bottom-style: groove;
+    background-color: #ffffff;
+    outline: none;
 }
