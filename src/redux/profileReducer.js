@@ -13,15 +13,11 @@ const loream = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellent
     " varius semper. Praesent semper nunc id leo tempus, in iaculis nibh dapibus." +
     " Praesent dictum urna quis urna vestibulum, at molestie magna porta.";
 
-/*const loream_shot = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta nisi mi," +
-    " nec cursus lacus accumsan eu. Sed ut dictum justo. Donec non enim mi. Sed fringilla sed ante" +
-    " varius semper.";*/
-
 let initializationState = {
     basePosts: [
-        {id: 3, text: loream, likes: 21},
-        {id: 2, text: loream, likes: 1},
-        {id: 1, text: loream, likes: 34}
+        {id: 3, text: loream, date:'7/10/2019', time:'11:12', likes: 21},
+        {id: 2, text: loream, date:'3/8/2019', time:'13:42', likes: 1},
+        {id: 1, text: loream, date:'1/1/2019', time:'16:33', likes: 34}
     ],
     newPostText: '',
     profile: null,
@@ -34,7 +30,10 @@ function profileReducer(state = initializationState, action) {
             let newContent = {
                 id: state.basePosts.length + 1,
                 text: action.newPostBody,
-                likes: 0
+                date: currentDate(),
+                time: currentTime(),
+                likes: 0,
+
             };
             return {
                 ...state,
@@ -81,6 +80,16 @@ export function addPostActionCreator(newPostBody) {
         type: ADD_POST_CONTENT,
         newPostBody
     }
+}
+
+const currentDate = () => {
+    let today = new Date();
+    return today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+}
+
+const currentTime = () => {
+    let today = new Date();
+    return today.getHours() + ":" + today.getMinutes();
 }
 
 export function setUserProfileActionCreator(profile) {

@@ -7,15 +7,21 @@ import avatar from "../../../assets/images/avatar.png";
 
 const MyPosts = React.memo(props => {
 
-        let Posts = props.basePosts.map(el => (<Post userText={el.text} likeCount={el.likes} key={el.id}/>));
-
-        function addPost(value) {
-            props.addNewPost(value.newPostBody);
+        if (!props.profile) {
+            return <div/>
         }
+
+    const addPost = (value) => {
+        props.addNewPost(value.newPostBody);
+    };
+
+        let Posts = props.basePosts.map(el => (<Post userText={el.text} likeCount={el.likes} date={el.date}
+                                                     time={el.time} key={el.id} profile={props.profile}/>));
+
 
         return (
             <div className={style.descriptionBlock}>
-                <AddPostFormRedux onSubmit={addPost}/>
+                <AddPostFormRedux onSubmit={addPost} profile={props.profile}/>
                 <div className={style.posts}>
                     <h2>My posts</h2>
                     {Posts}
@@ -27,11 +33,14 @@ const MyPosts = React.memo(props => {
 
 const AddPostForm = (props) => {
 
+    if (!props.profile) {
+        return <div/>
+    }
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={style.add_post}>
                 <div className={style.miniAvatar}>
-                    <img src={avatar} alt="avatar"/>
+                    <img src={props.profile.photos.small == null ? avatar : props.profile.photos.small} alt="Avatar"/>
                 </div>
                 <div className={style.inputPost}>
                     <Field component={"textarea"} validate={[requiredField]}

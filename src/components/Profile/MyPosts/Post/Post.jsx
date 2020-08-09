@@ -3,14 +3,17 @@ import style from './Post.module.css';
 import avatar from "../../../../assets/images/avatar.png"
 
 function Post(props) {
+
+
+
     return (
         <div className={style.item}>
             <div className={style.avatar}>
-                <img src={avatar} alt="avatar"/>
+                <img src={props.profile.photos.small == null ? avatar : props.profile.photos.small} alt="Avatar"/>
             </div>
             <div className={style.info}>
-                <h3>Name</h3>
-                <p>Date</p>
+                <h3>{props.profile.fullName}</h3>
+                <p>{props.date} in {props.time}</p>
             </div>
             <div className={style.text}>
                 <p>{props.userText}</p>
