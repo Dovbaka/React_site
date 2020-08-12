@@ -29,19 +29,26 @@
 .miniAvatar {
     display: inline-block;
     float: left;
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    margin-top: 10px;
+    margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.miniAvatar img{
+    height: 31px;
+    width: 31px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
 }
 
 .inputPost {
     display: inline-block;
     padding: 10px 10px 0 10px;
-}
-
-.miniAvatar img{
-    height: 30px;
-    width: 30px;
-    border-radius: 100px;
-    margin-top: 10px;
-    margin-left: 15px ;
 }
 
 .buttonContainer {

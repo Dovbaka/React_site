@@ -118,7 +118,7 @@ export function deletePostActionCreator(id) {
         type: DELETE_POST,
         id
     }
-}
+} //ToDo: create delete post feature
 
 export const setUserProfileThunkCreator = (userId) => async (dispatch) => {
     let response = await profileAPI.getProfile(userId);

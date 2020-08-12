@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FormControls.module.css"
 
-export const Textarea = ({input, meta, ...props}) => {
+export const Textarea = ({input, meta, ...props}) => { //Textarea with error styled tooltip
 
     const hasError = meta.touched && meta.error;
 
@@ -12,7 +12,7 @@ export const Textarea = ({input, meta, ...props}) => {
     )
 }
 
-export const Input = ({input, meta, ...props}) => {
+export const Input = ({input, meta, ...props}) => { //Input with error styled tooltip
 
     const hasError = meta.touched && meta.error;
 

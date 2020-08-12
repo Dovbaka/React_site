@@ -9,12 +9,22 @@
     padding-top: 20px;
 }
 
-.usersAvatar img {
-    border-radius: 100px;
+.usersAvatar {
     height: 100px;
     width: 100px;
+    position: relative;
+    overflow: hidden;
     margin: 15px 0 15px 15px;
     float: left;
+    border-radius: 100px;
+}
+
+.usersAvatar img {
+    height: 102px;
+    width: 102px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
 }
 
 .users span {

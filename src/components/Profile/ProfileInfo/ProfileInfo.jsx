@@ -31,12 +31,15 @@ function ProfileInfo(props) {
     return (
         <div>
             <div className={style.avatarContainer}>
-                <img src={props.profile.photos.large == null ? avatar : props.profile.photos.large} alt="Avatar"/>
-                {props.isOwner && <div>
-                    <input type={"file"} onChange={mainPhotoSelected} id={style.customFileInput}/>
-                    <label htmlFor={style.customFileInput}>Upload photo</label>
-                </div>}
+                <div className={style.avatar}>
+                    <img src={props.profile.photos.large == null ? avatar : props.profile.photos.large} alt="Avatar"/>
+                </div>
+                    {props.isOwner && <div>
+                        <input type={"file"} onChange={mainPhotoSelected} id={style.customFileInput}/>
+                        <label htmlFor={style.customFileInput}>Upload photo</label>
+                    </div>}
             </div>
+
             <div className={style.allInfoContainer}>
                 <div className={style.topInfo}>
                     <h2>{props.profile.fullName}</h2>
