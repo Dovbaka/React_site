@@ -1,6 +1,6 @@
 .app_nav {
     grid-area: nav;
-    background-color: #6e6e6e;
+    background-color: #2e2e2e;
     padding: 40px 0 40px 25px;
     font-size: 13pt;
 }
@@ -16,7 +16,7 @@
 }
 
 .item a.activeLink {
-    color: gold;
+    color: #42b0ff;
 }
 
 .friends {
@@ -26,5 +26,5 @@
 
 .online {
     font-size: 10pt;
-    color: gold;
+    color: #42b0ff;
 }

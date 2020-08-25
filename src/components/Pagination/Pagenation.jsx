@@ -13,27 +13,31 @@ function Pagination(props) {
 
     let portionCount = Math.ceil(pagesCount / props.portionSize);
     let [portionNumber, setPortionNumber] = useState(1);
-    let leftPortionPageNumber = (portionNumber - 1) * props.portionSize +1;
+    let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1;
     let rightPortionPageNumber = portionNumber * props.portionSize;
+    let leftBtnMode, rightBtnMode;
+
 
     return <div className={style.paginator}>
-        {
-            portionNumber > 1 &&
-                <button onClick={() => {setPortionNumber(portionNumber-1)}}>Prev</button>}
-                <div className={style.pageNumbers}>
-                    { pages
-                        .filter(p => p >= leftPortionPageNumber && p<=rightPortionPageNumber)
-                        .map(p =>
-                            <span key={p} className={props.currentPage === p ? style.selectedPage : ""}
-                                  onClick={() => {
-                                      props.onPageChange(p)
-                                  }}> {p} </span>
-                        )
-                    }
-                </div>
-        {
-            portionCount > portionNumber &&
-            <button onClick={() => {setPortionNumber(portionNumber+1)}}>Next</button>}
+        {portionNumber > 1 ? leftBtnMode = false : leftBtnMode = true}
+        <button disabled={leftBtnMode} onClick={() => {
+            setPortionNumber(portionNumber - 1)
+        }}> &#60; </button>
+        <div className={style.pageNumbers}>
+            {pages
+                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map(p =>
+                    <span key={p} className={props.currentPage === p ? style.selectedPage : ""}
+                          onClick={() => {
+                              props.onPageChange(p)
+                          }}> {p} </span>
+                )
+            }
+        </div>
+        {portionCount > portionNumber ? rightBtnMode = false : rightBtnMode = true}
+        <button disabled={rightBtnMode} onClick={() => {
+            setPortionNumber(portionNumber + 1)
+        }}> &#62; </button>
     </div>
 }
 

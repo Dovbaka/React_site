@@ -4,12 +4,11 @@
     cursor: pointer;
 }
 
-.paginator button{
-    position: absolute;
+.paginator button {
     margin-top: 3px;
 }
 
-.pageNumbers{
+.pageNumbers {
     width: 650px;
     display: inline-block;
     white-space: nowrap;
@@ -17,6 +16,29 @@
 
 .selectedPage {
     font-size: 14pt;
-    color: #f3cb00;
+    color: #42b0ff;
     font-weight: bold;
+    text-shadow: 0 0 36px #ffffff, 0 0 11px #3daeff, 0 0 60px #42b0ff
+}
+
+.paginator button {
+    background-color: #42b0ff;
+    border-radius: 15px;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 2px 12px;
+    text-decoration: none;
+    outline: none;
+    user-select: none;
+}
+
+.paginator button:hover {
+    opacity: 0.85;
+}
+
+.paginator button:disabled {
+    opacity: 0;
 }

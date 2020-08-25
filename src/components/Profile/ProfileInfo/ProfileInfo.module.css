@@ -9,10 +9,11 @@
 .allInfoContainer {
     width: 490px;
     float: right;
-    margin: 20px 50px 0 0;
+    margin: 20px 50px auto auto;
     padding: 0 40px 10px 20px;
     background-color: white;
     border-radius: 5px;
+    box-shadow: 0 11px 10px 0 rgba(0,0,0,0.13);
 }
 
 .avatarContainer {
@@ -21,6 +22,7 @@
     margin: 20px 20px;
     padding: 20px;
     position: relative;
+    box-shadow: 0 11px 10px 0 rgba(0,0,0,0.13);
 }
 
 .avatar{
@@ -141,4 +143,9 @@
     border-bottom-style: groove;
     background-color: #ffffff;
     outline: none;
+}
+
+.contacts a{
+    text-decoration: none;
+    color: #42b0ff;
 }

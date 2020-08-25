@@ -58,7 +58,7 @@ function ProfileInfo(props) {
 }
 
 const Contact = ({contactTitle, contactValue}) => {
-    return <p>{contactTitle + ": " + contactValue}</p>
+    return <p>{contactTitle + ": "} <a href={contactValue}>{contactValue}</a> </p>
 }
 
 const ProfileData = (props) => {
@@ -73,11 +73,13 @@ const ProfileData = (props) => {
         <div className={style.aboutMe}>
             <h3>Contacts</h3>
         </div>
-        {Object.keys(props.profile.contacts).map(cont => { //Get contacts info
-            if (validateInfo(props.profile.contacts[cont]))
-                return <Contact key={cont} contactTitle={cont} contactValue={props.profile.contacts[cont]}/>
-            else return null
-        })}
+        <div className={style.contacts}>
+            {Object.keys(props.profile.contacts).map(cont => { //Get contacts info
+                if (validateInfo(props.profile.contacts[cont]))
+                    return <Contact key={cont} contactTitle={cont} contactValue={props.profile.contacts[cont]}/>
+                else return null
+            })}
+        </div>
         {props.isOwner && <div className={style.editButton}><button onClick={props.setEditMode}>Edit</button></div>}
     </div>
 }
