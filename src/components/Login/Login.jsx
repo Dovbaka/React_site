@@ -19,6 +19,9 @@ function LoginForm(props) {
                 <label htmlFor={"psw"}><b>Password</b></label>
                 <Field component={Input} validate={[requiredField, maxLength35]} type={"password"}
                        placeholder={"Enter Password"} name={"password"} required/>
+                {props.captchaUrl && <img src={props.captchaUrl}/>}
+                {props.captchaUrl && <Field component={Input} validate={[requiredField]} type={"text"}
+                           placeholder={"Enter captcha"} name={"captchaText"} required/>}
             </div>
 
             <button type={"submit"}>Login</button>
@@ -43,7 +46,7 @@ const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 function Login(props) {
 
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captchaText);
     }
 
     if (props.isAuth) {
@@ -51,7 +54,7 @@ function Login(props) {
     }
 
     return <div>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
     </div>
 
 }
