@@ -2,15 +2,22 @@ const SEND_MESSAGE = 'DIALOGUES/SEND-MESSAGE'
 
 let initializationState = {
     baseMessages: [
-        {name: "Nick", pathId: 1},
-        {name: "Arthur", pathId: 2},
-        {name: "John", pathId: 3},
-        {name: "Lenny", pathId: 4},
-        {name: "Dutch", pathId: 5},
+        {name: "Nick", pathId: 121133},
+        {name: "Arthur", pathId: 121134},
+        {name: "John", pathId: 121135},
+        {name: "Lenny", pathId: 121136},
+        {name: "Dutch", pathId: 121137},
+        {name: "Bill", pathId: 121138},
+        {name: "Micha", pathId: 121139},
+        {name: "User", pathId: 121140},
+        {name: "User", pathId: 121141},
+        {name: "User", pathId: 121142},
+        {name: "User", pathId: 121143},
+        {name: "User", pathId: 121144},
     ],
     baseTexts: [
-        {id: 1, text: "Hey, boy!"},
-        {id: 2, text: "Have you seen Lenny?"}
+        {id: 1211331, text: "Hey, boy!"},
+        {id: 1211332, text: "Have you seen Lenny?"},
     ]
 };
 

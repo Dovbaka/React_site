@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {BrowserRouter, Link, Route, withRouter} from "react-router-dom"
+import {BrowserRouter, Link, Route, withRouter, Redirect} from "react-router-dom"
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -35,7 +35,6 @@ class App extends React.Component {
                         <SearchUserContainer/>
                     </Suspense>}}/>
                     <Route path='/login' render={() => <LoginContainer/>}/>
-                    <Link to = "/profile" />
                 </div>
             </div>
         );

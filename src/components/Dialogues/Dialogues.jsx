@@ -23,6 +23,7 @@ function Dialogues(props) {
                 {Dialogues}
             </div>
             <div className={style.messages_items}>
+                <div className={style.vl}> </div>
                 <div className={style.message_box}>
                     {Messages}
                 </div>
@@ -35,8 +36,8 @@ function Dialogues(props) {
 const AddMessageForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <div className={style.input}>
-            <Field component={Textarea} validate={[requiredField, maxLength10]}  name={"newMessageBody"} placeholder={"Enter your message"}/>
-            <button>Submit</button>
+            <Field component={Textarea} name={"newMessageBody"} placeholder={"Enter your message"}/>
+            <button>Send</button>
         </div>
     </form>
 }
