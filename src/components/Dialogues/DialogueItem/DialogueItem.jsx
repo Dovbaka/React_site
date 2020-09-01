@@ -1,6 +1,5 @@
 import React from 'react';
 import style from '../Dialogues.module.css';
-import avatar from '../../../assets/images/avatar.png'
 import NavLinkWithDiv from "../../Common/NavLinkWithDiv/NavLinkWithDiv";
 
 function DialogueItem(props) {
@@ -10,7 +9,7 @@ function DialogueItem(props) {
                             divStyle={style.dialogue}
                             divActiveStyle={style.active}>
                 <div className={style.imgContainer}>
-                    <img src={avatar} alt={"avatar"} className={style.avatar}/>
+                    <img src={props.avatar} alt={"avatar"} className={style.avatar}/>
                 </div>
                 <div className={style.textContainer}>
                     <h3>{props.name}</h3>

@@ -4,8 +4,13 @@ import avatar from "../../../assets/images/avatar.png"
 
 
 function Message(props) {
-    return(
-        <div className={style.message}><img src={avatar} alt='Avatar'/>{props.message}</div>
+    return (
+        <div className={style.message}><img src={props.sender.img} alt='Avatar'/>
+            <div>
+                <h3>{props.sender.name}</h3>
+                <p>{props.message}</p>
+            </div>
+        </div>
     )
 }
 

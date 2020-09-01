@@ -4,14 +4,16 @@ import DialogueItem from "./DialogueItem/DialogueItem";
 import Message from "./Messages/Message";
 import {Field, reduxForm} from "redux-form";
 import {Textarea} from "../Common/FormsControls/FormsControls";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
-
-const maxLength10 = maxLengthCreator(10);
+import {withRouter} from "react-router-dom";
 
 function Dialogues(props) {
 
-    let Dialogues = props.baseMessages.map(el => (<DialogueItem name={el.name} path={el.pathId} key={el.pathId}/>));
-    let Messages = props.baseTexts.map(el => (<Message message={el.text} key={el.id}/>));
+    const selectedDialogueId = Number(props.location.pathname.replace('dialogues','').replace(/[/]/g,''));
+
+    let DialogueItems = props.baseMessages.map(el => (<DialogueItem name={el.name} path={el.pathId}
+                                                                    key={el.pathId} avatar={el.img}/>));
+    let Messages = props.baseTexts.map(el => (<Message message={el.text} key={el.id}
+                                                       sender={props.baseMessages.find((member) => member.pathId === el.senderId)}/>));
 
     function addNewMessage(value) {
         props.sendMessage(value.newMessageBody)
@@ -20,7 +22,7 @@ function Dialogues(props) {
     return (
         <div className={style.dialogues}>
             <div className={style.dialogues_items}>
-                {Dialogues}
+                {DialogueItems}
             </div>
             <div className={style.messages_items}>
                 <div className={style.vl}> </div>
@@ -44,4 +46,4 @@ const AddMessageForm = (props) => {
 
 const AddMessageFormRedux = reduxForm({form: "dialogAddMessageForm"})(AddMessageForm);
 
-export default Dialogues
+export default withRouter(Dialogues);
