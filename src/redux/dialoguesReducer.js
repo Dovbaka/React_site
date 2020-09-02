@@ -19,9 +19,16 @@ let initializationState = {
     baseTexts: [
         {id: 1211331, text: "Hey, boy!", senderId: 121134},
         {id: 1211332, text: "Have you seen Lenny?", senderId: 121134},
-        {id: 1211332, text: "Stop ignoring me!", senderId: 121139},
-        {id: 1211332, text: "I have a plan", senderId: 121137},
-        {id: 1211332, text: "Just have faith", senderId: 121137},
+        {id: 1211333, text: "Stop ignoring me!", senderId: 121139},
+        {id: 1211334, text: "I have a plan", senderId: 121137},
+        {id: 1211335, text: "Just have faith", senderId: 121137},
+        {id: 1211336, text: "Blah", senderId: 121135},
+        {id: 1211337, text: "Blah blah", senderId: 121136},
+        {id: 1211338, text: "Blah blah blah blah", senderId: 121140},
+        {id: 1211339, text: "Blah blah blah", senderId: 121138},
+        {id: 1211340, text: "Blah blah blah blah blah", senderId: 121134},
+        {id: 1211341, text: "Blah blah", senderId: 121135},
+        {id: 1211342, text: "Blah blah blah", senderId: 121134},
     ]
 };
 

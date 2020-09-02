@@ -12,7 +12,8 @@
 }
 
 .info {
-    float: left;
+    vertical-align: top;
+    display: inline-block;
     text-align: left;
     margin: 20px 0 0 5px;
 }
@@ -28,10 +29,10 @@
 }
 
 .item .avatar {
+    display: inline-block;
     height: 50px;
     width: 50px;
     border-radius: 100px;
-    float: left;
     margin-top: 15px;
     margin-left: 15px;
     position: relative;
@@ -61,7 +62,6 @@
 }
 
 .text p{
-    display: inline-block;
     margin: 15px;
     text-align: justify;
     color: #2e2e2e;
