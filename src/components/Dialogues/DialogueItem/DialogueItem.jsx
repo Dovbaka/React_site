@@ -3,6 +3,8 @@ import style from '../Dialogues.module.css';
 import NavLinkWithDiv from "../../Common/NavLinkWithDiv/NavLinkWithDiv";
 
 function DialogueItem(props) {
+    if(props.currentUserId === props.path) return null;
+
     return (
         <div>
             <NavLinkWithDiv to={"/dialogues/" + props.path}

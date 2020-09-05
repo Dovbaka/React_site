@@ -3,7 +3,6 @@ import style from './Dialogues.module.css'
 import DialogueItem from "./DialogueItem/DialogueItem";
 import Message from "./Messages/Message";
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../Common/FormsControls/FormsControls";
 import {withRouter} from "react-router-dom";
 
 function Dialogues(props) {
@@ -12,17 +11,17 @@ function Dialogues(props) {
 
     const selectedDialogueId = Number(props.location.pathname.replace('dialogues','').replace(/[/]/g,''));
 
-    let DialogueItems = props.baseMessages.map(el => (<DialogueItem name={el.name} path={el.pathId}
-                                                                    key={el.pathId} avatar={el.img}/>));
-    let Messages = props.baseTexts.map(el => (<Message message={el.text} key={el.id}
-                                                       sender={props.baseMessages.find((member) => member.pathId === el.senderId)}/>));
+    let DialogueItems = props.baseDialogues.map(el => (<DialogueItem name={el.userName} path={el.id}
+                                                                 key={el.id} avatar={el.photos.small}/>));
+    let Messages = props.baseTexts.map(el => (<Message message={el.items.body} key={el.items.id}
+                                                       sender={props.baseDialogues.find((member) => member.id === el.recipientId)}/>));
 
-    const scrollToBottom = () => {
+    const scrollToBottom = () => { // Scroll list to the last message
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
 
     function addNewMessage(value) {
-        props.sendMessage(value.newMessageBody)
+        props.sendMessage(value.newMessageBody, 120000);
     }
 
     useEffect(() => {
@@ -50,7 +49,6 @@ function Dialogues(props) {
 
 
 const AddMessageForm = (props) => {
-    debugger;
     return <form onSubmit={props.handleSubmit}>
         <div className={style.input}>
             <Field component={"textarea"} name={"newMessageBody"} placeholder={"Enter your message"}/>

@@ -69,7 +69,25 @@ export const authAPI = {
         return instance.delete(`auth/login`);
     },
     getCaptchaUrl(){
-        return instance.get('security/get-captcha-url')
+        return instance.get(`security/get-captcha-url`)
+    }
+}
+
+export const messAPI = {
+    startMess(userId) {
+        return instance.put(`dialogs/${userId}`);
+    },
+
+    sendMess(userId, body) {
+        return instance.post(`dialogs/${userId}/messages`, {body: body})
+    },
+
+    getMess(userId){
+        return instance.get(`dialogs/${userId}/messages`);
+    },
+
+    getDialogs(){
+        return instance.get(`dialogs`);
     }
 }
 
