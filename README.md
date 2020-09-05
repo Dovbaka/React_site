@@ -1,7 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
+## Starting the project
 In the project directory, you can run:
 
 ### `npm start`
@@ -11,6 +9,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+## Authorization
+To register a new account follow the link: https://social-network.samuraijs.com/
+
+If your account has already been created, you can authorize in the login page
 
 ### `npm test`
 
