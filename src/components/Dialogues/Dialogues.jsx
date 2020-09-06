@@ -12,16 +12,17 @@ function Dialogues(props) {
     const selectedDialogueId = Number(props.location.pathname.replace('dialogues','').replace(/[/]/g,''));
 
     let DialogueItems = props.baseDialogues.map(el => (<DialogueItem name={el.userName} path={el.id}
-                                                                 key={el.id} avatar={el.photos.small}/>));
-    let Messages = props.baseTexts.map(el => (<Message message={el.items.body} key={el.items.id}
-                                                       sender={props.baseDialogues.find((member) => member.id === el.recipientId)}/>));
+                                                                 key={el.id} avatar={el.photos.small}
+                                                                     setMessages={props.setMessages}/>));
+    let Messages = props.baseTexts.map(el => (<Message message={el.body} key={el.id} senderName={el.senderName} senderId={el.senderId} userId={props.userId}
+                                                       recipient={props.baseDialogues.find((member) => member.id === el.recipientId)}/>));
 
     const scrollToBottom = () => { // Scroll list to the last message
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
 
     function addNewMessage(value) {
-        props.sendMessage(value.newMessageBody, 120000);
+        props.sendMessage(selectedDialogueId, value.newMessageBody);
     }
 
     useEffect(() => {
@@ -44,9 +45,6 @@ function Dialogues(props) {
         </div>
     )
 }
-
-
-
 
 const AddMessageForm = (props) => {
     return <form onSubmit={props.handleSubmit}>

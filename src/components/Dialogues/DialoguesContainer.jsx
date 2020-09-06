@@ -1,7 +1,7 @@
 import React from "react";
 import Dialogues from "./Dialogues";
 import {
-    sendMessageActionCreator,
+    sendMessagesThunkCreator,
     setDialoguesThunkCreator,
     setMessagesThunkCreator
 } from "../../redux/dialoguesReducer";
@@ -13,7 +13,9 @@ class DialoguesContainer extends React.Component {
 
     componentDidMount() {
         this.props.setDialogues();
+        console.log("Mount")
         }
+
 
     render() {
         return <Dialogues {...this.props}/>
@@ -25,13 +27,14 @@ let mapStateToProps = (state) => {
         baseDialogues: state.messagePage.baseDialogues,
         baseTexts: state.messagePage.baseTexts,
         newMessageText: state.messagePage.newMessageText,
+        userId: state.authentication.userId
     }
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        sendMessage: (value, id) => {
-            dispatch(sendMessageActionCreator(value, id));
+        sendMessage: (id, value) => {
+            dispatch(sendMessagesThunkCreator(id, value));
         },
         setDialogues: () => {
             dispatch(setDialoguesThunkCreator());

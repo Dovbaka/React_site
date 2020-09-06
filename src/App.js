@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import {BrowserRouter, Link, Route, withRouter, Redirect} from "react-router-dom"
-import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
+import DialoguesContainer from "./components/Dialogues/DialoguesContainer.jsx";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import NavBarContainer from "./components/NavBar/NavBarContainer";

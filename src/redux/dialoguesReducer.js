@@ -1,5 +1,6 @@
 import avatar from '../assets/images/avatar.png';
 import {messAPI} from "../api/api";
+import {subscribeActionCreator} from "./searchUserReducer";
 
 const SEND_MESSAGE = 'DIALOGUES/SEND-MESSAGE';
 const SET_DIALOGUES = 'DIALOGUES/SET-DIALOGUES';
@@ -7,7 +8,7 @@ const SET_MESSAGES = 'DIALOGUES/SET-MESSAGES';
 
 let initializationState = {
     baseDialogues: [],
-    baseTexts: []
+    baseTexts: [],
 };
 
 function dialoguesReducer(state = initializationState, action) {
@@ -15,8 +16,10 @@ function dialoguesReducer(state = initializationState, action) {
         case SEND_MESSAGE: {
             let message = {
                 id: state.baseTexts.length + 1,
-                text: action.value,
-                senderId: action.id,
+                body: action.value,
+                recipientId: action.id,
+                senderName: action.senderName,
+                senderId: action.senderId
             };
             return {...state, baseTexts: [...state.baseTexts, message]}
         }
@@ -34,11 +37,13 @@ function dialoguesReducer(state = initializationState, action) {
     }
 }
 
-export function sendMessageActionCreator(value, id) {
+export function sendMessageActionCreator(id, value, senderName, senderId) {
     return {
         type: SEND_MESSAGE,
+        id,
         value,
-        id
+        senderName,
+        senderId
     }
 }
 
@@ -63,7 +68,16 @@ export const setDialoguesThunkCreator = () => async (dispatch) => {
 
 export const setMessagesThunkCreator = (userId) => async (dispatch) => {
     let response = await messAPI.getMess(userId);
-    dispatch(setMessagesActionCreator(response.data));
+    dispatch(setMessagesActionCreator(response.data.items));
+}
+
+export const sendMessagesThunkCreator = (userId, body) => async (dispatch) => {
+    let response = await messAPI.sendMess(userId, body);
+    if (response.data.resultCode === 0) {
+        dispatch(sendMessageActionCreator(userId, body,
+            response.data.data.message.senderName,
+            response.data.data.message.senderId));
+    }
 }
 
 export default dialoguesReducer;
