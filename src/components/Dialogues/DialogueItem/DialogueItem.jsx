@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import style from '../Dialogues.module.css';
 import NavLinkWithDiv from "../../Common/NavLinkWithDiv/NavLinkWithDiv";
 
 function DialogueItem(props) {
+
     return (
-        <div onClick={()=>props.setMessages(props.path)}>
+        <div >
             <NavLinkWithDiv to={"/dialogues/" + props.path}
                             divStyle={style.dialogue}
                             divActiveStyle={style.active}>

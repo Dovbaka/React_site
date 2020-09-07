@@ -1,0 +1,54 @@
+.bubbleWrapper {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-self: flex-end;
+    color: #fff;
+}
+
+.bubbleWrapper h3 {
+    font-size: 9pt;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.bubbleWrapper p {
+    font-size: 12pt;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 13px;
+}
+
+
+.recipientContainer {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.senderContainer {
+    display: inline-flex;
+    text-align: left;
+}
+
+.recipientContainer .bubble {
+    min-width: 60px;
+    max-width: 380px;
+    padding: 0 18px;
+    margin: 0 8px;
+    background-color: #35d35b;
+    border-radius: 30px 30px 0 30px;
+    border: none;
+}
+
+.senderContainer .bubble {
+    min-width: 60px;
+    max-width: 380px;
+    padding: 0 18px;
+    margin: 0 8px;
+    background-color: #439bd5;
+    border-radius: 30px 30px 30px 0;
+    border: none;
+}

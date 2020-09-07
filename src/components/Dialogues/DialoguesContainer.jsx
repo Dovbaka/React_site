@@ -13,7 +13,6 @@ class DialoguesContainer extends React.Component {
 
     componentDidMount() {
         this.props.setDialogues();
-        console.log("Mount")
         }
 
 

@@ -9,13 +9,16 @@ function Dialogues(props) {
 
     const messagesEndRef = React.createRef();
 
-    const selectedDialogueId = Number(props.location.pathname.replace('dialogues','').replace(/[/]/g,''));
+    const selectedDialogueId = Number(props.location.pathname
+        .replace('dialogues','')
+        .replace(/[/]/g,''));
 
     let DialogueItems = props.baseDialogues.map(el => (<DialogueItem name={el.userName} path={el.id}
                                                                  key={el.id} avatar={el.photos.small}
                                                                      setMessages={props.setMessages}/>));
-    let Messages = props.baseTexts.map(el => (<Message message={el.body} key={el.id} senderName={el.senderName} senderId={el.senderId} userId={props.userId}
-                                                       recipient={props.baseDialogues.find((member) => member.id === el.recipientId)}/>));
+    let Messages = props.baseTexts.map(el => (<Message message={el.body} key={el.id} senderName={el.senderName}
+                                                       senderId={el.senderId} userId={props.userId}
+                                                       />));
 
     const scrollToBottom = () => { // Scroll list to the last message
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -26,8 +29,9 @@ function Dialogues(props) {
     }
 
     useEffect(() => {
+        if(selectedDialogueId>0)props.setMessages(selectedDialogueId);
         scrollToBottom();
-    });
+    }, [selectedDialogueId]);
 
     return (
         <div className={style.dialogues}>
@@ -40,7 +44,7 @@ function Dialogues(props) {
                     {Messages}
                     <div ref={messagesEndRef}/>
                 </div>
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
+                {selectedDialogueId>0?<AddMessageFormRedux onSubmit={addNewMessage}/>:null}
             </div>
         </div>
     )
