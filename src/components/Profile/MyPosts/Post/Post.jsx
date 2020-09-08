@@ -5,12 +5,12 @@ import avatar from "../../../../assets/images/avatar.png"
 function Post(props) {
 
 
-
     return (
         <div className={style.item}>
             <div className={style.avatar}>
                 <img src={props.profile.photos.small == null ? avatar : props.profile.photos.small} alt="Avatar"/>
-            </div><div className={style.info}>
+            </div>
+            <div className={style.info}>
                 <h3>{props.profile.fullName}</h3>
                 <p>{props.date} in {props.time}</p>
             </div>

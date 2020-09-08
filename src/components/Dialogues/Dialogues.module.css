@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-.dialogues_items{
+.dialogues_items {
     overflow: auto;
     height: 610px;
 }
@@ -29,28 +29,38 @@
     background-color: #42b0ff;
 }
 
-.dialogues_items .active a{
+.dialogues_items .active a {
     color: white;
 }
 
-.imgContainer img {
+.imgContainer {
     margin-right: 20px;
     border-radius: 25px;
     height: 45px;
     width: 45px;
+    position: relative;
+    overflow: hidden;
+}
+
+.imgContainer img {
+    height: 46px;
+    width: 46px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
 }
 
 .textContainer {
     text-align: left;
 }
 
-.textContainer h3{
+.textContainer h3 {
     font-size: 13pt;
     font-weight: normal;
     margin: 0;
 }
 
-.textContainer p{
+.textContainer p {
     font-size: 9pt;
     margin: 0;
 }
@@ -71,7 +81,6 @@
 .messages_items form {
     border: none;
 }
-
 
 
 .messages_items .input {

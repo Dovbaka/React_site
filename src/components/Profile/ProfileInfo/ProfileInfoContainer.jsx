@@ -6,6 +6,7 @@ import {
     updateUserStatusThunkCreator
 } from "../../../redux/profileReducer";
 import React from "react";
+import {startMessagingThunkCreator} from "../../../redux/dialoguesReducer";
 
 function ProfileInfoContainer (props) {
     return (
@@ -20,6 +21,7 @@ let mapStateToProps = (state) => {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         userId: state.authentication.userId,
+        startMessSuccess: state.messagePage.startMessSuccess
     }
 };
 
@@ -34,6 +36,9 @@ let mapDispatchToProps = (dispatch) => {
         saveProfileInfo: (profile) => {
             dispatch(saveProfileInfoThunkCreator(profile))
         },
+        startMessaging: (userId) => {
+            dispatch(startMessagingThunkCreator(userId))
+        }
     }
 };
 

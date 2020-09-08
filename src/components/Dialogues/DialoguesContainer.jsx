@@ -1,6 +1,7 @@
 import React from "react";
 import Dialogues from "./Dialogues";
 import {
+    clearMessagesActionCreator,
     sendMessagesThunkCreator,
     setDialoguesThunkCreator,
     setMessagesThunkCreator
@@ -12,8 +13,14 @@ import {compose} from "redux";
 class DialoguesContainer extends React.Component {
 
     componentDidMount() {
+        this.props.clearMessages();
         this.props.setDialogues();
-        }
+    }
+
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.baseDialogues !== this.props.baseDialogues) console.log(this.props);
+    }
 
 
     render() {
@@ -40,6 +47,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setMessages: (userId) => {
             dispatch(setMessagesThunkCreator(userId));
+        },
+        clearMessages: () =>{
+            dispatch(clearMessagesActionCreator())
         }
     }
 };

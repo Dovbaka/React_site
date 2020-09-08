@@ -65,15 +65,11 @@
     font-size: inherit;
     outline: none;
     padding: 8px 50px;
-    margin: 15px 15px 0 15px;
-
+    margin-top: 15px;
 }
 
-.customFileInput:hover::before {
-    background: #4a4a4a;
-}
-.customFileInput:active::before {
-    background: #2E2E2E;
+#customFileInput + label:hover {
+    background: #3b3b3b;
 }
 
 .topInfo h2 {
@@ -148,4 +144,27 @@
 .contacts a{
     text-decoration: none;
     color: #42b0ff;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonContainer button{
+    background: #2E2E2E;
+    border-radius:5px;
+    border: none;
+    display:inline-block;
+    cursor:pointer;
+    color: #ffffff;
+    font-size: inherit;
+    outline:none;
+    padding:10px 50px;
+    margin-top: 15px;
+}
+
+.buttonContainer button:hover {
+    background: #3c3c3c;
 }

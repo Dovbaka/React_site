@@ -10,26 +10,27 @@ function Dialogues(props) {
     const messagesEndRef = React.createRef();
 
     const selectedDialogueId = Number(props.location.pathname
-        .replace('dialogues','')
-        .replace(/[/]/g,''));
+        .replace('dialogues', '')
+        .replace(/[/]/g, ''));
 
     let DialogueItems = props.baseDialogues.map(el => (<DialogueItem name={el.userName} path={el.id}
-                                                                 key={el.id} avatar={el.photos.small}
+                                                                     key={el.id} avatar={el.photos.small}
                                                                      setMessages={props.setMessages}/>));
     let Messages = props.baseTexts.map(el => (<Message message={el.body} key={el.id} senderName={el.senderName}
                                                        senderId={el.senderId} userId={props.userId}
-                                                       />));
+    />));
 
     const scrollToBottom = () => { // Scroll list to the last message
-        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+        messagesEndRef.current.scrollIntoView({behavior: 'smooth'})
     }
 
     function addNewMessage(value) {
         props.sendMessage(selectedDialogueId, value.newMessageBody);
+        scrollToBottom();
     }
 
     useEffect(() => {
-        if(selectedDialogueId>0)props.setMessages(selectedDialogueId);
+        if (selectedDialogueId > 0) props.setMessages(selectedDialogueId);
         scrollToBottom();
     }, [selectedDialogueId]);
 
@@ -39,12 +40,12 @@ function Dialogues(props) {
                 {DialogueItems}
             </div>
             <div className={style.messages_items}>
-                <div className={style.vl}> </div>
+                <div className={style.vl}></div>
                 <div className={style.message_box}>
                     {Messages}
                     <div ref={messagesEndRef}/>
                 </div>
-                {selectedDialogueId>0?<AddMessageFormRedux onSubmit={addNewMessage}/>:null}
+                {selectedDialogueId > 0 ? <AddMessageFormRedux onSubmit={addNewMessage}/> : null}
             </div>
         </div>
     )

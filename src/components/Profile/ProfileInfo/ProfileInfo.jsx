@@ -4,6 +4,7 @@ import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 import avatar from "../../../assets/images/avatar.png";
 import ProfileDataForm from "./ProfileStatus/ProfileDataForm";
+import {Redirect} from "react-router-dom";
 
 const validateInfo = (info) => {
     return (info != null && info !== "")
@@ -12,7 +13,6 @@ const validateInfo = (info) => {
 function ProfileInfo(props) {
 
     let [editMode, setEditMode] = useState(false);
-
     const mainPhotoSelected = (e) => {
         if (e.target.files.length) {
             props.updateUserPhoto(e.target.files[0])
@@ -20,9 +20,10 @@ function ProfileInfo(props) {
     }
 
     const onSubmit = (formData) => {
-       props.saveProfileInfo(formData);
-       setEditMode(false);
+        props.saveProfileInfo(formData);
+        setEditMode(false);
     }
+
 
     if (!props.profile) {
         return <Preloader/>
@@ -30,14 +31,20 @@ function ProfileInfo(props) {
 
     return (
         <div>
+            {props.startMessSuccess.some(id => id === props.profile.userId)? <Redirect to={`/dialogues/${props.profile.userId}`}/>:null}
             <div className={style.avatarContainer}>
                 <div className={style.avatar}>
                     <img src={props.profile.photos.large == null ? avatar : props.profile.photos.large} alt="Avatar"/>
                 </div>
-                    {props.isOwner && <div>
+                {props.isOwner ?
+                    <div className={style.buttonContainer}>
                         <input type={"file"} onChange={mainPhotoSelected} id={style.customFileInput}/>
                         <label htmlFor={style.customFileInput}>Upload photo</label>
-                    </div>}
+                    </div> :
+                    <div className={style.buttonContainer}>
+                        <button onClick={() => props.startMessaging(props.profile.userId)}>Start messaging</button>
+                    </div>
+                }
             </div>
 
             <div className={style.allInfoContainer}>
@@ -47,10 +54,12 @@ function ProfileInfo(props) {
                                             isOwner={props.isOwner}/>
                 </div>
                 <div>
-                    {editMode? <ProfileDataForm initialValues={props.profile} profile={props.profile}
-                                                onSubmit={onSubmit}/> :
+                    {editMode ? <ProfileDataForm initialValues={props.profile} profile={props.profile}
+                                                 onSubmit={onSubmit}/> :
                         <ProfileData profile={props.profile} isOwner={props.isOwner}
-                                     setEditMode={()=> {setEditMode(true)}}/>}
+                                     setEditMode={() => {
+                                         setEditMode(true)
+                                     }}/>}
                 </div>
             </div>
         </div>
@@ -58,7 +67,7 @@ function ProfileInfo(props) {
 }
 
 const Contact = ({contactTitle, contactValue}) => {
-    return <p>{contactTitle + ": "} <a href={contactValue}>{contactValue}</a> </p>
+    return <p>{contactTitle + ": "} <a href={contactValue}>{contactValue}</a></p>
 }
 
 const ProfileData = (props) => {
@@ -80,10 +89,11 @@ const ProfileData = (props) => {
                 else return null
             })}
         </div>
-        {props.isOwner && <div className={style.editButton}><button onClick={props.setEditMode}>Edit</button></div>}
+        {props.isOwner && <div className={style.editButton}>
+            <button onClick={props.setEditMode}>Edit</button>
+        </div>}
     </div>
 }
-
 
 
 export default ProfileInfo
