@@ -7,18 +7,17 @@ import {withRouter} from "react-router-dom";
 
 function Dialogues(props) {
 
-    const messagesEndRef = React.createRef();
+    const messagesEndRef = React.createRef(); //Ref for scrolling to bottom
 
     const selectedDialogueId = Number(props.location.pathname
         .replace('dialogues', '')
-        .replace(/[/]/g, ''));
+        .replace(/[/]/g, ''));  //Getting selected dialogue id form URL
 
-    let DialogueItems = props.baseDialogues.map(el => (<DialogueItem name={el.userName} path={el.id}
-                                                                     key={el.id} avatar={el.photos.small}
-                                                                     setMessages={props.setMessages}/>));
-    let Messages = props.baseTexts.map(el => (<Message message={el.body} key={el.id} senderName={el.senderName}
-                                                       senderId={el.senderId} userId={props.userId}
-    />));
+    let DialogueItems = props.baseDialogues.map(el => (<DialogueItem key={el.id} name={el.userName}
+                                                                     path={el.id} avatar={el.photos.small}/>));
+
+    let Messages = props.baseTexts.map(el => (<Message key={el.id} message={el.body} senderName={el.senderName}
+                                                       senderId={el.senderId} userId={props.userId}/>));
 
     const scrollToBottom = () => { // Scroll list to the last message
         messagesEndRef.current.scrollIntoView({behavior: 'smooth'})
@@ -26,13 +25,14 @@ function Dialogues(props) {
 
     function addNewMessage(value) {
         props.sendMessage(selectedDialogueId, value.newMessageBody);
-        scrollToBottom();
+        props.clearForm("dialogAddMessageForm");
     }
 
     useEffect(() => {
         if (selectedDialogueId > 0) props.setMessages(selectedDialogueId);
-        scrollToBottom();
-    }, [selectedDialogueId]);
+    }, [selectedDialogueId]); //Just on Url change
+
+    useEffect(() => scrollToBottom());
 
     return (
         <div className={style.dialogues}>
@@ -40,7 +40,7 @@ function Dialogues(props) {
                 {DialogueItems}
             </div>
             <div className={style.messages_items}>
-                <div className={style.vl}></div>
+                <div className={style.vl}/>
                 <div className={style.message_box}>
                     {Messages}
                     <div ref={messagesEndRef}/>

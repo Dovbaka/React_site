@@ -13,6 +13,7 @@ const MyPosts = React.memo(props => {
 
     const addPost = (value) => {
         props.addNewPost(value.newPostBody);
+        props.clearForm("profileAddPostForm");
     };
 
         let Posts = props.basePosts.map(el => (<Post userText={el.text} likeCount={el.likes} date={el.date}

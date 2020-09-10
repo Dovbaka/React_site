@@ -15,7 +15,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/searchUserSelector";
-import Pagination from "../Pagination/Pagenation";
+import Pagination from "../Pagination/Pagination";
 
 
 class SearchUserContainer extends React.Component {

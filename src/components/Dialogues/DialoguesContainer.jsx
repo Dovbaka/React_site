@@ -9,6 +9,7 @@ import {
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {reset} from "redux-form";
 
 class DialoguesContainer extends React.Component {
 
@@ -16,12 +17,6 @@ class DialoguesContainer extends React.Component {
         this.props.clearMessages();
         this.props.setDialogues();
     }
-
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.baseDialogues !== this.props.baseDialogues) console.log(this.props);
-    }
-
 
     render() {
         return <Dialogues {...this.props}/>
@@ -48,8 +43,11 @@ let mapDispatchToProps = (dispatch) => {
         setMessages: (userId) => {
             dispatch(setMessagesThunkCreator(userId));
         },
-        clearMessages: () =>{
+        clearMessages: () => {
             dispatch(clearMessagesActionCreator())
+        },
+        clearForm: (formName) => {
+            dispatch(reset(formName));
         }
     }
 };

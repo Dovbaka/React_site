@@ -82,13 +82,11 @@
     border: none;
 }
 
-
 .messages_items .input {
     display: flex;
     align-items: center;
     justify-content: left;
 }
-
 
 .input {
     padding-top: 5%;
