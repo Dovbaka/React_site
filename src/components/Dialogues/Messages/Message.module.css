@@ -7,9 +7,22 @@
     color: #fff;
 }
 
-.bubbleWrapper h3 {
+.messageInfoBox {
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.messageInfoBox h3 {
     font-size: 9pt;
     font-weight: bold;
+    margin: 0;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.messageInfoBox h2 {
+    font-size: 8pt;
+    font-weight: 100;
     margin: 0;
     padding-top: 10px;
 }

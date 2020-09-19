@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import style from '../Dialogues.module.css';
 import NavLinkWithDiv from "../../Common/NavLinkWithDiv/NavLinkWithDiv";
 
@@ -14,7 +14,7 @@ function DialogueItem(props) {
                 </div>
                 <div className={style.textContainer}>
                     <h3>{props.name}</h3>
-                    <p>Last message</p>
+                    <p>Last seen: {props.lastActivityDate}</p>
                 </div>
             </NavLinkWithDiv>
         </div>

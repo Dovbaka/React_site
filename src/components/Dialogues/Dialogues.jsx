@@ -13,11 +13,21 @@ function Dialogues(props) {
         .replace('dialogues', '')
         .replace(/[/]/g, ''));  //Getting selected dialogue id form URL
 
+
     let DialogueItems = props.baseDialogues.map(el => (<DialogueItem key={el.id} name={el.userName}
-                                                                     path={el.id} avatar={el.photos.small}/>));
+                                                                     path={el.id} avatar={el.photos.small}
+                                                                     lastActivityDate={el.lastDialogActivityDate
+                                                                         .substring(
+                                                                             0, el.lastDialogActivityDate
+                                                                             .lastIndexOf('T')
+                                                                         )
+                                                                         .split('-').reverse().join('.')}/>));
 
     let Messages = props.baseTexts.map(el => (<Message key={el.id} message={el.body} senderName={el.senderName}
-                                                       senderId={el.senderId} userId={props.userId}/>));
+                                                       senderId={el.senderId} userId={props.userId}
+                                                       time={el.addedAt.substr(
+                                                               el.addedAt.lastIndexOf('T') + 1,5
+                                                           )} />));
 
     const scrollToBottom = () => { // Scroll list to the last message
         messagesEndRef.current.scrollIntoView({behavior: 'smooth'})

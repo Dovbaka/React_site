@@ -1,6 +1,4 @@
-import avatar from '../assets/images/avatar.png';
 import {messAPI} from "../api/api";
-import {subscribeActionCreator} from "./searchUserReducer";
 
 const SEND_MESSAGE = 'DIALOGUES/SEND-MESSAGE';
 const SET_DIALOGUES = 'DIALOGUES/SET-DIALOGUES';
@@ -16,15 +14,9 @@ let initializationState = {
 
 function dialoguesReducer(state = initializationState, action) {
     switch (action.type) {
+
         case SEND_MESSAGE: {
-            let message = {
-                id: state.baseTexts.length + 1,
-                body: action.value,
-                recipientId: action.id,
-                senderName: action.senderName,
-                senderId: action.senderId
-            };
-            return {...state, baseTexts: [...state.baseTexts, message]}
+            return {...state, baseTexts: [...state.baseTexts, action.payload]}
         }
 
         case SET_DIALOGUES: {
@@ -53,13 +45,10 @@ function dialoguesReducer(state = initializationState, action) {
     }
 }
 
-export function sendMessageActionCreator(id, value, senderName, senderId) {
+export function sendMessageActionCreator(payload) {
     return {
         type: SEND_MESSAGE,
-        id,
-        value,
-        senderName,
-        senderId
+        payload
     }
 }
 
@@ -112,9 +101,7 @@ export const setMessagesThunkCreator = (userId) => async (dispatch) => {
 export const sendMessagesThunkCreator = (userId, body) => async (dispatch) => {
     let response = await messAPI.sendMess(userId, body);
     if (response.data.resultCode === 0) {
-        dispatch(sendMessageActionCreator(userId, body,
-            response.data.data.message.senderName,
-            response.data.data.message.senderId));
+        dispatch(sendMessageActionCreator(response.data.data.message));
     }
 }
 

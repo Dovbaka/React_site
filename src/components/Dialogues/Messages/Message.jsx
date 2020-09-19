@@ -1,15 +1,19 @@
 import React from 'react'
-import style from './Message.module.css'
-import avatar from '../../../assets/images/avatar.png'
-import avatar2 from '../../../assets/images/avatar2.png'
+import styles from './Message.module.css'
 
 function Message(props) {
+    debugger
     return (
-        <div className={style.bubbleWrapper}>
-            <div className={props.senderId !== props.userId ? style.recipientContainer : style.senderContainer}>
-                <div className={style.bubble}>
-                    <h3>{props.senderName}</h3>
-                    <p>{props.message}</p>
+        <div className={styles.bubbleWrapper}>
+            <div className={props.senderId !== props.userId ? styles.recipientContainer : styles.senderContainer}>
+                <div className={styles.bubble}>
+                    <div className={styles.messageInfoBox}>
+                        <h3>{props.senderName}</h3>
+                        <h2>{props.time}</h2>
+                    </div>
+                    <div>
+                        <p>{props.message}</p>
+                    </div>
                 </div>
             </div>
         </div>
