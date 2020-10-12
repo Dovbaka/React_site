@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {BrowserRouter, Link, Route, withRouter, Redirect} from "react-router-dom"
+import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer.jsx";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -10,6 +10,7 @@ import {connect, Provider} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
 import store from "./redux/storeRedux";
 import {compose} from "redux";
+import Preloader from "./components/Common/Preloader/Preloader";
 
 const SearchUserContainer = React.lazy(() => import("./components/SearchUser/SearchUserContainer"));
 
@@ -21,7 +22,7 @@ class App extends React.Component {
 
     render() {
         if (!this.props.initialized) {
-            return <div/>;
+            return <Preloader marginTopValue={250}/>;
         }
 
         return (
