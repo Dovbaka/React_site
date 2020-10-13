@@ -16,15 +16,34 @@ import {
     getUsers
 } from "../../redux/searchUserSelector";
 import Pagination from "../Pagination/Pagination";
+import {UsersType} from "../../types/types";
+import {AppStateType} from "../../redux/storeRedux";
 
+type MapStateToPropsType = {
+    currentPage: number
+    pageSize: number
+    totalUsersCount: number
+    isFetching: boolean
+    subInProgress: Array<number>
+    users: Array<UsersType>
+}
 
-class SearchUserContainer extends React.Component {
+type MapDispatchToPropsType = {
+    getUsers: (currentPage: number, pageSize: number) => void
+    unsubscribeUser: (userId: number) => void
+    subscribeUser: (userId: number) => void
+    subscribeInProgress: (subInProgress: boolean, userId: number) => void
+}
+
+type PropsType = MapStateToPropsType & MapDispatchToPropsType;
+
+class SearchUserContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
-    onPageChange = (pageNumber) => {
+    onPageChange = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
@@ -48,7 +67,7 @@ class SearchUserContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -59,21 +78,20 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {
     return {
-        subscribeUser: (userId) => {
+        subscribeUser: (userId: number) => {
             dispatch(subscribeThunkCreator(userId))
         },
-        unsubscribeUser: (userId) => {
+        unsubscribeUser: (userId: number) => {
             dispatch(unsubscribeThunkCreator(userId))
         },
-        subscribeInProgress: (subInProgress, userId) => {
+        subscribeInProgress: (subInProgress: boolean, userId: number) => {
             dispatch(subscribeInProgressActionCreator(subInProgress, userId))
         },
-        getUsers: (currentPage, pageSize) => {
+        getUsers: (currentPage: number, pageSize: number) => {
             dispatch(getUsersThunkCreator(currentPage, pageSize))
-        },
-
+        }
     }
 };
 
