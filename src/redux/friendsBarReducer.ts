@@ -17,7 +17,7 @@ let initializationState = {
 export type initializationStateType = typeof initializationState;
 
 
-function friendsBarReducer(state = initializationState, action: any): initializationStateType {
+function friendsBarReducer(state = initializationState): initializationStateType {
     return state;
 }
 

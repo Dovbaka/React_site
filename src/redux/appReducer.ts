@@ -1,4 +1,5 @@
 import {getAuthThunkCreator} from "./authReducer";
+import {Dispatch} from "redux";
 
 const IS_INITIALIZED = 'APP/IS-INITIALIZED';
 
@@ -10,7 +11,7 @@ let initializationState: InitialSateType = {
     initialized: false
 };
 
-const appReducer = (state = initializationState, action: any): InitialSateType => {
+const appReducer = (state = initializationState, action: ActionsTypes): InitialSateType => {
     switch (action.type) {
 
         case IS_INITIALIZED: {
@@ -21,6 +22,8 @@ const appReducer = (state = initializationState, action: any): InitialSateType =
             return state;
     }
 };
+
+type ActionsTypes = initializingActionType;
 
 export type initializingActionType = {
     type: typeof IS_INITIALIZED

@@ -1,5 +1,6 @@
 import {usersAPI} from "../api/api";
 import {UsersType} from "../types/types";
+import {Dispatch} from "redux";
 
 const SUBSCRIBE = 'SEARCH-USER/SUBSCRIBE';
 const UNSUBSCRIBE = 'SEARCH-USER/UNSUBSCRIBE';
@@ -20,7 +21,7 @@ let initializationState = {
 
 export type initializationStateType = typeof initializationState;
 
-function searchUserReducer(state = initializationState, action: any): initializationStateType {
+function searchUserReducer(state = initializationState, action: ActionsTypes): initializationStateType {
     switch (action.type) {
         case SUBSCRIBE: {
             return {
@@ -67,7 +68,10 @@ function searchUserReducer(state = initializationState, action: any): initializa
     }
 }
 
-function updateObjectInArray(items: Array<any>, itemId: string, objPropName: string, newObjProps: any) {
+type ActionsTypes = subscribeActionType | unsubscribeActionType | setUsersActionType | setCurrentPageActionType |
+    setTotalCountActionType | toggleIsFetchingActionType | subscribeInProgressActionCreator
+
+function updateObjectInArray(items: Array<any>, itemId: number, objPropName: string, newObjProps: any) {
     return items.map(u => {
         if (u[objPropName] === itemId) {
             return {...u, ...newObjProps}
@@ -101,10 +105,10 @@ export function unsubscribeActionCreator(userId: number): unsubscribeActionType 
 
 type setUsersActionType = {
     type: typeof SET_USERS
-    users: UsersType
+    users: Array<UsersType>
 }
 
-export function setUsersActionCreator(users: UsersType): setUsersActionType {
+export function setUsersActionCreator(users: Array<UsersType>): setUsersActionType {
     return {
         type: SET_USERS,
         users
@@ -161,7 +165,8 @@ export function subscribeInProgressActionCreator(InProgress: boolean, userId: nu
     }
 }
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: any) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
     dispatch(toggleIsFetchingActionCreator(true));
     dispatch(setCurrentPageActionCreator(currentPage));
 
@@ -171,7 +176,8 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
     dispatch(setTotalCountActionCreator(response.totalCount));
 }
 
-export const subscribeThunkCreator = (id: number) => async (dispatch: any) => {
+export const subscribeThunkCreator = (id: number) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
     dispatch(subscribeInProgressActionCreator(true, id));
 
     let response = await usersAPI.postSub(id);
@@ -181,7 +187,8 @@ export const subscribeThunkCreator = (id: number) => async (dispatch: any) => {
     dispatch(subscribeInProgressActionCreator(false, id));
 }
 
-export const unsubscribeThunkCreator = (id: number) => async (dispatch: any) => {
+export const unsubscribeThunkCreator = (id: number) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
     dispatch(subscribeInProgressActionCreator(true, id));
     let response = await usersAPI.deleteSub(id);
     if (response.data.resultCode === 0) {

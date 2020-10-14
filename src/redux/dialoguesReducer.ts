@@ -14,7 +14,7 @@ let initializationState = {
     startMessSuccess:[] as Array<number>
 };
 
-function dialoguesReducer(state = initializationState, action: any): initializationStateType {
+function dialoguesReducer(state = initializationState, action: ActionType): initializationStateType {
     switch (action.type) {
 
         case SEND_MESSAGE: {
@@ -46,6 +46,9 @@ function dialoguesReducer(state = initializationState, action: any): initializat
             return state;
     }
 }
+
+type ActionType = sendMessageActionType | startMessagingActionType | clearMessagesActionType | setDialoguesActionType |
+    setMessagesActionType;
 
 type sendMessageActionType = {
     type: typeof SEND_MESSAGE

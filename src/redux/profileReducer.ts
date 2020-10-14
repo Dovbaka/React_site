@@ -86,6 +86,8 @@ function profileReducer(state = initializationState, action: any): initializatio
     }
 }
 
+type ActionType = addPostActionType | setUserProfileActionType | setUserStatusActionType | setUserPhotoAction;
+
 type addPostActionType = {
     type: typeof ADD_POST_CONTENT,
     newPostBody: string
