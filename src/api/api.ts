@@ -1,4 +1,5 @@
-import * as axios from "axios";
+import axios from "axios";
+import {ProfileType} from "../types/types";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -18,32 +19,32 @@ export const usersAPI = {
             });
     },
 
-    deleteSub(id) {
+    deleteSub(id: number) {
         return instance.delete(`follow/${id}`);
     },
 
-    postSub(id) {
+    postSub(id: number) {
         return instance.post(`follow/${id}`);
     }
 }
 
 export const profileAPI = {
 
-    getProfile(userId = 1) {
+    getProfile(userId: number) {
         return instance.get(`profile/${userId}`).then(response => {
             return response.data
         });
     },
 
-    getStatus(userId = 1) {
+    getStatus(userId: number) {
         return instance.get(`profile/status/${userId}`);
     },
 
-    updateStatus(status) {
+    updateStatus(status: string) {
         return instance.put(`profile/status`, {status: status});
     },
 
-    updatePhoto(photo) {
+    updatePhoto(photo: any) {
         let formData = new FormData();
         formData.append("image", photo)
         return instance.put(`profile/photo`, formData, {
@@ -53,40 +54,64 @@ export const profileAPI = {
         });
     },
 
-    saveProfileInfo(profile) {
+    saveProfileInfo(profile: ProfileType) {
         return instance.put(`profile`, profile);
     }
 }
 
+export enum ResultCodeType {
+    Success = 0,
+    Error = 1,
+    CaptchaIsRequired = 10
+}
+
+type GetAuthResponseType = {
+    data: { id: number, email: string, login: string }
+    resultCode: ResultCodeType
+    messages: Array<string>
+}
+
+type LoginResponseType = {
+    data: { userId: number }
+    resultCode: ResultCodeType
+    messages: Array<string>
+}
+
+type LogoutResponseType = {
+    data: { userId: number }
+    resultCode: ResultCodeType
+    messages: Array<string>
+}
+
 export const authAPI = {
     getAuth() {
-        return instance.get(`auth/me`);
+        return instance.get<GetAuthResponseType>(`auth/me`);
     },
-    login(email, password, rememberMe, captchaText) {
-        return instance.post(`auth/login`, {email, password, rememberMe, captchaText});
+    login(email: string, password: string, rememberMe = false, captchaText: string) {
+        return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe, captchaText});
     },
     logout() {
         return instance.delete(`auth/login`);
     },
-    getCaptchaUrl(){
+    getCaptchaUrl() {
         return instance.get(`security/get-captcha-url`)
     }
 }
 
 export const messAPI = {
-    startMess(userId) {
+    startMess(userId: number) {
         return instance.put(`dialogs/${userId}`);
     },
 
-    sendMess(userId, body) {
+    sendMess(userId: number, body: string) {
         return instance.post(`dialogs/${userId}/messages`, {body: body})
     },
 
-    getMess(userId){
+    getMess(userId: number) {
         return instance.get(`dialogs/${userId}/messages`);
     },
 
-    getDialogs(){
+    getDialogs() {
         return instance.get(`dialogs`);
     }
 }

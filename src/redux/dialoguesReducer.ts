@@ -1,4 +1,5 @@
 import {messAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 const SEND_MESSAGE = 'DIALOGUES/SEND-MESSAGE';
 const SET_DIALOGUES = 'DIALOGUES/SET-DIALOGUES';
@@ -11,7 +12,7 @@ export type initializationStateType = typeof initializationState;
 let initializationState = {
     baseDialogues: [] as Array<Object>,
     baseTexts: [] as Array<Object>,
-    startMessSuccess:[] as Array<number>
+    startMessSuccess: [] as Array<number>
 };
 
 function dialoguesReducer(state = initializationState, action: ActionType): initializationStateType {
@@ -55,7 +56,7 @@ type sendMessageActionType = {
     payload: string
 }
 
-export function sendMessageActionCreator(payload: string): sendMessageActionType{
+export function sendMessageActionCreator(payload: string): sendMessageActionType {
     return {
         type: SEND_MESSAGE,
         payload
@@ -110,25 +111,25 @@ export function setMessagesActionCreator(messages: Array<Object>): setMessagesAc
     }
 }
 
-export const startMessagingThunkCreator = (userId: number) => async (dispatch: any) => {
+export const startMessagingThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionType>) => {
     let response = await messAPI.startMess(userId);
     if (response.data.resultCode === 0) {
         dispatch(startMessagingActionCreator(true, userId));
     }
 }
 
-export const setDialoguesThunkCreator = () => async (dispatch: any) => {
+export const setDialoguesThunkCreator = () => async (dispatch: Dispatch<ActionType>) => {
     let response = await messAPI.getDialogs();
     dispatch(setDialoguesActionCreator(response.data));
     dispatch(startMessagingActionCreator(false, 0));
 }
 
-export const setMessagesThunkCreator = (userId: number) => async (dispatch: any) => {
+export const setMessagesThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionType>) => {
     let response = await messAPI.getMess(userId);
     dispatch(setMessagesActionCreator(response.data.items));
 }
 
-export const sendMessagesThunkCreator = (userId: number, body: string) => async (dispatch: any) => {
+export const sendMessagesThunkCreator = (userId: number, body: string) => async (dispatch: Dispatch<ActionType>) => {
     let response = await messAPI.sendMess(userId, body);
     if (response.data.resultCode === 0) {
         dispatch(sendMessageActionCreator(response.data.data.message));

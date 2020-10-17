@@ -1,5 +1,6 @@
 import {profileAPI} from "../api/api";
 import {PhotosType, ProfileType} from "../types/types";
+import {Dispatch} from "redux";
 
 
 const ADD_POST_CONTENT = 'PROFILE/ADD-POST-CONTENT';
@@ -24,9 +25,9 @@ type PostType = {
 
 let initializationState = {
     basePosts: [
-        {id: 3, text: loream, date:'7/10/2019', time:'11:12', likes: 21},
-        {id: 2, text: loream, date:'3/8/2019', time:'13:42', likes: 1},
-        {id: 1, text: loream, date:'1/1/2019', time:'16:33', likes: 34}
+        {id: 3, text: loream, date: '7/10/2019', time: '11:12', likes: 21},
+        {id: 2, text: loream, date: '3/8/2019', time: '13:42', likes: 1},
+        {id: 1, text: loream, date: '1/1/2019', time: '16:33', likes: 34}
     ] as Array<PostType>,
     newPostText: '' as string,
     profile: null as ProfileType | null,
@@ -35,7 +36,7 @@ let initializationState = {
 
 export type initializationStateType = typeof initializationState
 
-function profileReducer(state = initializationState, action: any): initializationStateType {
+function profileReducer(state = initializationState, action: ActionType): initializationStateType {
     switch (action.type) {
         case ADD_POST_CONTENT: {
             let newContent = {
@@ -86,7 +87,8 @@ function profileReducer(state = initializationState, action: any): initializatio
     }
 }
 
-type ActionType = addPostActionType | setUserProfileActionType | setUserStatusActionType | setUserPhotoAction;
+type ActionType = addPostActionType | setUserProfileActionType |
+    setUserStatusActionType | setUserPhotoAction | deletePostAction;
 
 type addPostActionType = {
     type: typeof ADD_POST_CONTENT,
@@ -158,31 +160,31 @@ export function deletePostActionCreator(id: number): deletePostAction {
     }
 } //ToDo: create delete post feature
 
-export const setUserProfileThunkCreator = (userId: number) => async (dispatch: any) => {
+export const setUserProfileThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionType>) => {
     let response = await profileAPI.getProfile(userId);
     dispatch(setUserProfileActionCreator(response));
 }
 
-export const setUserStatusThunkCreator = (userId: number) => async (dispatch: any) => {
+export const setUserStatusThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionType>) => {
     let response = await profileAPI.getStatus(userId);
     dispatch(setUserStatusActionCreator(response.data));
 }
 
-export const updateUserStatusThunkCreator = (status: string) => async (dispatch: any) => {
+export const updateUserStatusThunkCreator = (status: string) => async (dispatch: Dispatch<ActionType>) => {
     let response = await profileAPI.updateStatus(status);
     if (response.data.resultCode === 0) {
         dispatch(setUserStatusActionCreator(status));
     }
 }
 
-export const updateUserPhotoThunkCreator = (photo: PhotosType) => async (dispatch: any) => {
+export const updateUserPhotoThunkCreator = (photo: PhotosType) => async (dispatch: Dispatch<ActionType>) => {
     let response = await profileAPI.updatePhoto(photo);
     if (response.data.resultCode === 0) {
         dispatch(setUserPhotoActionCreator(response.data.data.photos));
     }
 }
 
-export const saveProfileInfoThunkCreator = (profile: ProfileType) => async (dispatch:any, getState: any) => {
+export const saveProfileInfoThunkCreator = (profile: ProfileType) => async (dispatch: any, getState: any) => {
     const userId = getState().authentication.userId
     const response = await profileAPI.saveProfileInfo(profile);
     if (response.data.resultCode === 0) {
