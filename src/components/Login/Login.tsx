@@ -1,14 +1,18 @@
 import React from "react";
 import style from './Login.module.css';
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import {Input} from "../Common/FormsControls/FormsControls";
 import {Redirect} from "react-router-dom";
 
 const maxLength35 = maxLengthCreator(35);
 
-function LoginForm(props) {
-    return <form onSubmit={props.handleSubmit}>
+type LoginFormOwnProps = {
+    captchaUrl: string | null
+}
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({handleSubmit, error, captchaUrl}) => {
+    return <form onSubmit={handleSubmit}>
         <div className={style.container}>
             <div className={style.field}>
                 <label htmlFor={"uname"}><b>Username</b></label>
@@ -19,14 +23,14 @@ function LoginForm(props) {
                 <label htmlFor={"psw"}><b>Password</b></label>
                 <Field component={Input} validate={[requiredField, maxLength35]} type={"password"}
                        placeholder={"Enter Password"} name={"password"} required/>
-                {props.captchaUrl && <img src={props.captchaUrl}/>}
-                {props.captchaUrl && <Field component={Input} validate={[requiredField]} type={"text"}
+                {captchaUrl && <img src={captchaUrl}/>}
+                {captchaUrl && <Field component={Input} validate={[requiredField]} type={"text"}
                            placeholder={"Enter captcha"} name={"captchaText"} required/>}
             </div>
 
             <button type={"submit"}>Login</button>
-            {props.error && <div className={style.formSummeryTooltipPosition}>
-                {props.error}
+            {error && <div className={style.formSummeryTooltipPosition}>
+                {error}
             </div>}
             <label>
                 <Field component={"input"} type={"checkbox"} name={"rememberMe"}/> Remember me
@@ -41,11 +45,27 @@ function LoginForm(props) {
     </form>
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({form: 'login'})(LoginForm)
 
-function Login(props) {
+type PropsType = {
+    isAuth: boolean,
+    userId: number | null
+    captchaUrl: string | null
 
-    const onSubmit = (formData) => {
+    login: (email: string, password: string, rememberMe: boolean, captchaText: string) => void
+    logout: () => void
+}
+
+type LoginFormValuesType = {
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    captchaText: string
+}
+
+const Login: React.FC<PropsType> = (props) => {
+
+    const onSubmit = (formData: LoginFormValuesType) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captchaText);
     }
 

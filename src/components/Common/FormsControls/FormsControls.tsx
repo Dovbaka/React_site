@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./FormControls.module.css"
+import {WrappedFieldProps} from "redux-form";
 
-export const Textarea = ({input, meta, ...props}) => { //Textarea with error styled tooltip
+export const Textarea: React.FC<WrappedFieldProps> = ({input, meta, ...props}) => { //Textarea with error styled tooltip
 
     const hasError = meta.touched && meta.error;
     return (
@@ -11,7 +12,7 @@ export const Textarea = ({input, meta, ...props}) => { //Textarea with error sty
     )
 }
 
-export const Input = ({input, meta, ...props}) => { //Input with error styled tooltip
+export const Input: React.FC<WrappedFieldProps> = ({input, meta, ...props}) => { //Input with error styled tooltip
 
     const hasError = meta.touched && meta.error;
 

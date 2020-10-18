@@ -1,8 +1,20 @@
 import {connect} from "react-redux";
 import {loginThunkCreator, logoutThunkCreator} from "../../redux/authReducer";
 import Login from "./Login";
+import {AppStateType} from "../../redux/storeRedux";
 
-let mapStateToProps = (state) => {
+type MapStateToPropsType = {
+    isAuth: boolean,
+    userId: number | null
+    captchaUrl: string | null
+}
+
+type MapDispatchToPropsType = {
+    login: (email: string, password: string, rememberMe: boolean, captchaText: string) => void
+    logout: () => void
+}
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.authentication.isAuth,
         userId: state.authentication.userId,
@@ -10,7 +22,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {
     return {
         login: (email, password, rememberMe, captchaText) => {
             dispatch(loginThunkCreator(email, password, rememberMe, captchaText))

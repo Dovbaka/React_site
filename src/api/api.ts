@@ -77,12 +77,6 @@ type LoginResponseType = {
     messages: Array<string>
 }
 
-type LogoutResponseType = {
-    data: { userId: number }
-    resultCode: ResultCodeType
-    messages: Array<string>
-}
-
 export const authAPI = {
     getAuth() {
         return instance.get<GetAuthResponseType>(`auth/me`);
